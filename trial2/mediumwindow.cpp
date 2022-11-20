@@ -1,0 +1,14 @@
+#include "mediumwindow.h"
+#include "ui_mediumwindow.h"
+
+mediumWindow::mediumWindow(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::mediumWindow)
+{
+    ui->setupUi(this);
+}
+
+mediumWindow::~mediumWindow()
+{
+    delete ui;
+}
