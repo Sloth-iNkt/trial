@@ -12,3 +12,9 @@ login::~login()
 {
     delete ui;
 }
+
+void login::on_trialBtn_clicked()
+{
+
+}
+

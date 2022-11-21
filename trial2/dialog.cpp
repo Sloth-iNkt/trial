@@ -2,7 +2,7 @@
 #include "ui_dialog.h"
 #include "easywindow.h"
 #include "mediumwindow.h"
-#include "questions.h"
+//#include "questions.h"
 #include "mainmenu.h"
 
 Dialog::Dialog(QWidget *parent) :
