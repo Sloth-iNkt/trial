@@ -1,5 +1,6 @@
 #include "mediumwindow.h"
 #include "ui_mediumwindow.h"
+//#include "questions.h"
 
 mediumWindow::mediumWindow(QWidget *parent) :
     QDialog(parent),

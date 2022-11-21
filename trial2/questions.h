@@ -45,14 +45,17 @@ void questions::askQuestion(Ui::easyWindow *easyWinUi){
     easyWinUi -> optnFour -> setText(QString::fromStdString(this->optionFour));
 };
 
-/*class medQues{
+class mques{
+    void askMQues(Ui::mediumWindow*);
+};
 
-    public:
-    void medQuest(std::string mqstn, std::string ans){
-    };
+std::string medQarr[]={"x^4 + 2x^3 - 33x^2 - 50x + 200", "x^6 - 4x^5 - 73x^4 + 280x^3 + 1308x^2 - 5040x", "x^5 - 7x^4 + 12x^3 + 4x^2 - 16x", "x^4 - 2x^3 - 31x^2 - 28x", " x^5 + 3x^4 - 54x^3 - 108x^2 + 648x"};
+
+void mques::askMQues(Ui::mediumWindow *medWinUi){
+    for (int i=0; i<5; i++){
+        medWinUi -> qstnLbl -> setText(QString::fromStdString(medQarr[i]));
+    }
 };
-void questions::askQuestion(Ui::mediumWindow *medWinUi){
-    medWinUi -> mqstnLbl -> setText(QString::fromStdString(mqstn));
-};
-*/
+
+
 #endif // QUESTIONS_H
