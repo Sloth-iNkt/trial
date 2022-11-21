@@ -15,6 +15,9 @@ public:
     explicit mediumWindow(QWidget *parent = nullptr);
     ~mediumWindow();
 
+private slots:
+    void on_medText_textChanged();
+
 private:
     Ui::mediumWindow *ui;
 };

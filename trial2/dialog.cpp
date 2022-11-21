@@ -2,7 +2,7 @@
 #include "ui_dialog.h"
 #include "easywindow.h"
 #include "mediumwindow.h"
-//#include "questions.h"
+#include "questions.h"
 #include "mainmenu.h"
 
 Dialog::Dialog(QWidget *parent) :
@@ -22,7 +22,7 @@ void Dialog::on_easyBtn_clicked()
 {
     hide();
     easyWindow *easyWin = new easyWindow();
-//    eq1.askQuestion(easyWin->ui);
+    eq1.askQuestion(easyWin->ui);
     easyWin->exec();
 }
 

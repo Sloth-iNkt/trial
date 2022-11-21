@@ -7,25 +7,12 @@
     <x>0</x>
     <y>0</y>
     <width>362</width>
-    <height>330</height>
+    <height>290</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="shuffledBtn">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>220</y>
-     <width>301</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Custom</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="easyBtn">
    <property name="geometry">
     <rect>
@@ -36,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Easy (Multiple Choice)</string>
+    <string>Easy</string>
    </property>
   </widget>
   <widget class="QPushButton" name="difficultBtn">
@@ -62,17 +49,20 @@
     </rect>
    </property>
    <property name="text">
-    <string>Medium (Identification)</string>
+    <string>Medium</string>
    </property>
   </widget>
   <widget class="QPushButton" name="backBtn">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>270</y>
+     <y>220</y>
      <width>301</width>
      <height>41</height>
     </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>true</bool>
    </property>
    <property name="text">
     <string>Back</string>

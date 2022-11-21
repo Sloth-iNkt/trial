@@ -1,6 +1,6 @@
 #include "easywindow.h"
 #include "ui_easywindow.h"
-//#include "questions.h"
+// #include "questions.h"
 
 easyWindow::easyWindow(QWidget *parent) :
     QDialog(parent),
