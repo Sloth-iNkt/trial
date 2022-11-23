@@ -14,12 +14,13 @@ class mediumWindow : public QDialog
 public:
     explicit mediumWindow(QWidget *parent = nullptr);
     ~mediumWindow();
+    Ui::mediumWindow *ui;
 
 private slots:
     void on_medText_textChanged();
 
 private:
-    Ui::mediumWindow *ui;
+
 };
 
 #endif // MEDIUMWINDOW_H

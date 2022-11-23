@@ -30,7 +30,8 @@ void Dialog::on_easyBtn_clicked()
 void Dialog::on_mediumBtn_clicked()
 {
     hide();
-    mediumWindow *medWin = new mediumWindow;
+    mediumWindow *medWin = new mediumWindow();
+    medQarr[1].askMQues(medWin->ui);
     medWin->exec();
 }
 
