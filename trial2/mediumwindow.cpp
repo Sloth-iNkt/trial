@@ -1,5 +1,6 @@
 #include "mediumwindow.h"
 #include "ui_mediumwindow.h"
+//#include "questions.h"
 
 mediumWindow::mediumWindow(QWidget *parent) :
     QDialog(parent),
@@ -12,3 +13,11 @@ mediumWindow::~mediumWindow()
 {
     delete ui;
 }
+
+void mediumWindow::on_medText_textChanged()
+{
+
+
+
+}
+

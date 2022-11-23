@@ -16,7 +16,7 @@ public:
     ~login();
 
 private slots:
-    void on_checkBox_stateChanged(int arg1);
+    void on_trialBtn_clicked();
 
 private:
     Ui::login *ui;
