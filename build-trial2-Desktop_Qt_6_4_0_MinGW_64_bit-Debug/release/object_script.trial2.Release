@@ -1,0 +1,17 @@
+release/category.o
+release/difficulty.o
+release/easywindow.o
+release/howtoplay.o
+release/main.o
+release/mainmenu.o
+release/mainwindow.o
+release/mediumwindow.o
+release/review.o
+release/moc_category.o
+release/moc_difficulty.o
+release/moc_easywindow.o
+release/moc_howtoplay.o
+release/moc_mainmenu.o
+release/moc_mainwindow.o
+release/moc_mediumwindow.o
+release/moc_review.o
