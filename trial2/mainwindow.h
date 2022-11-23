@@ -7,6 +7,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -41,6 +42,13 @@ private slots:
     void on_okaybtn_clicked();
 
     void on_t1_clicked();
+
+    void on_f1_clicked();
+
+//    void on_revBtn_clicked();
+
+
+    void on_pause_btn_clicked();
 
 private:
     Ui::MainWindow *ui;
