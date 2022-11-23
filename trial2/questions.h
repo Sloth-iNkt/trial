@@ -1,6 +1,7 @@
 #ifndef QUESTIONS_H
 #define QUESTIONS_H
 
+#include "mediumwindow.h"
 #include "ui_easywindow.h"
 #include "ui_mediumwindow.h"
 #include <string>
@@ -45,16 +46,13 @@ void questions::askQuestion(Ui::easyWindow *easyWinUi){
     easyWinUi -> optnFour -> setText(QString::fromStdString(this->optionFour));
 };
 
-class mques{
-public:
-    void askMQues(Ui::mediumWindow*);
-};
+void askMQues(Ui::mediumWindow*);
 
-std::string medQarr[]={"x^2 + 11x + 28 ", "x^2 + 6x + 5", "x^2 + 4x", "x^2 + 7x", "x^2 - 4x + 4"};
+std::string medQarr []= {"x^2 + 11x + 28 ", "x^2 + 6x + 5", "x^2 + 4x", "x^2 + 7x", "x^2 - 4x + 4"};
 
-void mques::askMQues(Ui::mediumWindow *medWinUi){
+void askMQues(Ui::mediumWindow *medWinUi){
     for (int i=0; i<5; i++){
-        medWinUi -> qstnLbl -> setText(QString::fromStdString(medQarr[i]));
+        medWinUi -> mqstnLbl -> setText(QString::fromStdString(medQarr[i]));
     }
 };
 

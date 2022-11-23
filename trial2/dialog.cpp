@@ -31,7 +31,7 @@ void Dialog::on_mediumBtn_clicked()
 {
     hide();
     mediumWindow *medWin = new mediumWindow();
-    medQarr[1].askMQues(medWin->ui);
+    askMQues(medWin->ui);
     medWin->exec();
 }
 

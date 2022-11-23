@@ -14,10 +14,8 @@ mediumWindow::~mediumWindow()
     delete ui;
 }
 
-void mediumWindow::on_medText_textChanged()
-{
+//void mediumWindow::on_medText_textChanged()
+//{
 
-
-
-}
+//}
 

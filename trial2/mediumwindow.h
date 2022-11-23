@@ -17,7 +17,7 @@ public:
     Ui::mediumWindow *ui;
 
 private slots:
-    void on_medText_textChanged();
+//    void on_medText_textChanged();
 
 private:
 

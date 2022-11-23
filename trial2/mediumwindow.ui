@@ -39,7 +39,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="enterButton">
    <property name="geometry">
     <rect>
      <x>300</x>
