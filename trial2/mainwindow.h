@@ -65,7 +65,23 @@ private slots:
 
     void on_resumeBtn_clicked();
 
+    void askAlgEQues();
+
+    void askgeoEQues();
+
+    void asktrigoEQues();
+
+    void askAlgMQues();
+
+    void askgeoMQues();
+
+    void asktrigoMQues();
+
     void askAlgHQues();
+
+    void askgeoHQues();
+
+    void asktrigoHQues();
 
     void on_submit_btn_clicked();
 

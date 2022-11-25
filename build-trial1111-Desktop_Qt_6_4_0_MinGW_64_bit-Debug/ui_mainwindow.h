@@ -313,7 +313,7 @@ public:
         retranslateUi(MainWindow);
 
         stackedWidget->setCurrentIndex(5);
-        quizBox->setCurrentIndex(2);
+        quizBox->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
