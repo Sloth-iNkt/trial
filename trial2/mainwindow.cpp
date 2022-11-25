@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-<<<<<<< HEAD
-=======
+
 #include<QTime>
 
 QString difficulty_ = "";
@@ -32,7 +31,7 @@ void MainWindow::timer_() {
         }
     }
 }
->>>>>>> fb8448eedd2d28454670df4632c82e9912d5a412
+
 
 
 MainWindow::MainWindow(QWidget *parent)
