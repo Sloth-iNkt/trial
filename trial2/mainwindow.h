@@ -85,7 +85,7 @@ private slots:
 
     void on_submit_btn_clicked();
 
-    void on_ans_inp_textChanged(const QString &arg1);
+//    void on_ans_inp_textChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
