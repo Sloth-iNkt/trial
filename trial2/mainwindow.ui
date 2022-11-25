@@ -120,9 +120,12 @@
      <widget class="QGroupBox" name="groupBox">
       <property name="geometry">
        <rect>
+<<<<<<< HEAD
         <x>90</x>
         <y>60</y>
         <width>161</width>
+=======
+>>>>>>> fb8448eedd2d28454670df4632c82e9912d5a412
         <x>130</x>
         <y>70</y>
         <width>120</width>
@@ -522,6 +525,7 @@
         </property>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <property name="text">
          <string>Question 1</string>
         </property>
@@ -591,6 +595,10 @@
         </property>
         <property name="text">
          <string>PushButton</string>
+=======
+        <property name="title">
+         <string>hard</string>
+>>>>>>> fb8448eedd2d28454670df4632c82e9912d5a412
 =======
         <property name="title">
          <string>hard</string>

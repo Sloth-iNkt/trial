@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<<<<<<< HEAD
-<!-- Written by QtCreator 8.0.2, 2022-11-25T11:19:43. -->
-=======
-<!-- Written by QtCreator 8.0.2, 2022-11-25T09:57:26. -->
->>>>>>> fb8448eedd2d28454670df4632c82e9912d5a412
+<!-- Written by QtCreator 8.0.2, 2022-11-25T11:57:37. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -239,18 +235,14 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-<<<<<<< HEAD
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey"></value>
-=======
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">trial11112</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Hersey/school/pers/c++/trial/trial2/trial1111.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Hersey/school/pers/c++/trial/trial2/trial1111.pro</value>
->>>>>>> fb8448eedd2d28454670df4632c82e9912d5a412
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/monte/OneDrive/Documents/school/CS 111/trial/trial2/trial1111.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/monte/OneDrive/Documents/school/CS 111/trial/trial2/trial1111.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/monte/OneDrive/Documents/school/CS 111/trial/build-trial1111-Desktop_Qt_6_4_0_MinGW_64_bit-Debug</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

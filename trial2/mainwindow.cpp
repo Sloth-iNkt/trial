@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+<<<<<<< HEAD
 
 #include<QTime>
 
@@ -33,6 +34,39 @@ void MainWindow::timer_() {
 }
 
 
+=======
+#include<QTime>
+
+QString difficulty_ = "";
+int score_ = 0;
+int correct_ans = 0;
+int missed_q = 0;
+bool pauseBtn_, resumeBtn_;
+
+void delay()
+{
+    QTime dieTime= QTime::currentTime().addSecs(1);
+    while (QTime::currentTime() < dieTime)
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 1);
+}
+
+void MainWindow::timer_() {
+    pauseBtn_ = false;
+    resumeBtn_ = false;
+    int num = 30;
+    int i = 0;
+    while(i < num+1) {
+        ui->timer->setText(QString::number(num-i));
+        delay();
+        if (pauseBtn_ == true && resumeBtn_ == false) {
+            continue;
+        } else {
+            i += 1;
+        }
+    }
+}
+
+>>>>>>> fb8448eedd2d28454670df4632c82e9912d5a412
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
