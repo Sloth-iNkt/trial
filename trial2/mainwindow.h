@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "ui_mainwindow.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -14,6 +15,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+    Ui::MainWindow *ui;
 
 private slots:
     void on_pushButton_clicked();
@@ -43,6 +46,12 @@ private slots:
     void on_t1_clicked();
 
 private:
-    Ui::MainWindow *ui;
+
 };
+
+
+
+
+//huhu gumana ka na plz hauf na multi defn yan ala nga sabi
+
 #endif // MAINWINDOW_H

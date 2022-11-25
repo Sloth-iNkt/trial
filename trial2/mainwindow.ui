@@ -161,7 +161,7 @@
        <rect>
         <x>90</x>
         <y>60</y>
-        <width>120</width>
+        <width>161</width>
         <height>251</height>
        </rect>
       </property>
@@ -384,7 +384,7 @@
        <string notr="true">background-color: rgb(170, 255, 255);</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tof1">
        <widget class="QLabel" name="eq1">
@@ -410,7 +410,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>true</string>
+         <string>True</string>
         </property>
        </widget>
        <widget class="QPushButton" name="f1">
