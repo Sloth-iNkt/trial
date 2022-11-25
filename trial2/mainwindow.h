@@ -3,10 +3,12 @@
 
 #include "ui_mainwindow.h"
 #include <QMainWindow>
+#include <QPushButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
+
 
 class MainWindow : public QMainWindow
 {
@@ -19,6 +21,7 @@ public:
     Ui::MainWindow *ui;
 
 private slots:
+
     void on_pushButton_clicked();
 
     void on_quizBtn_clicked();
@@ -44,6 +47,25 @@ private slots:
     void on_okaybtn_clicked();
 
     void on_t1_clicked();
+
+    void on_f1_clicked();
+
+//    void on_revBtn_clicked();
+
+
+    void on_pause_btn_clicked();
+
+//    void resumeBtn();
+
+//    void on_resumeBtn();
+
+    void timer_();
+
+    void on_menuBtnP_clicked();
+
+    void on_retryBtn_clicked();
+
+    void on_resumeBtn_clicked();
 
 private:
 
