@@ -1,12 +1,16 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include<QTime>
+#include <QString>
+#include <QInputDialog>
 
 QString difficulty_ = "";
 int score_ = 0;
 int correct_ans = 0;
 int missed_q = 0;
 bool pauseBtn_, resumeBtn_;
+QString topic_ ="";
+//int next = 0;
 
 void delay()
 {
@@ -30,6 +34,15 @@ void MainWindow::timer_() {
         }
     }
 }
+
+std::string diffQarr []= {"x^2 + 11x + 28 ", "x^2 + 6x + 5", "x^2 + 4x", "x^2 + 7x", "x^2 - 4x + 4"};
+
+void MainWindow::askAlgHQues(){
+
+    for (int a=0; a<5/*next*/; a++){
+          ui -> hq -> setText(QString::fromStdString(diffQarr[a]));
+    }
+};
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -64,16 +77,20 @@ void MainWindow::on_quizBtn_clicked()
 void MainWindow::on_geo_btn_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
+    topic_ = "geo";
 }
 
 void MainWindow::on_alg_btn_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
+    topic_ = "alg";
+
 }
 
 void MainWindow::on_trig_btn_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
+    topic_ = "trig";
 }
 
 
@@ -113,7 +130,15 @@ void MainWindow::on_difficultBtn_clicked()
     difficulty_ = "hard";
     ui->stackedWidget->setCurrentIndex(4);
     ui->instruction->setText("instruction sa hard");
-    ui->hq->setText("HARD - Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+    if (topic_ == "geo" ){
+        ui -> hq -> setText("geo");
+    }
+    else if (topic_ == "alg"){
+      askAlgHQues();
+    }
+    else {
+        ui -> hq -> setText("trig");
+    };
 }
 
 void MainWindow::on_t1_clicked()
@@ -201,6 +226,18 @@ void MainWindow::on_retryBtn_clicked()
         ui->quizBox->setCurrentIndex(2);
     }
     timer_();
+}
+
+
+
+void MainWindow::on_submit_btn_clicked()
+{
+    QString hardAns = ui -> ans_inp -> text();
+//    if (hardAns != ""){
+//        next++;
+//        ui -> ans_inp -> setText("");
+//    }
+
 }
 
 

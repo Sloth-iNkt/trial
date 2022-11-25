@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "ui_mainwindow.h"
 #include <QMainWindow>
 #include <QPushButton>
 
@@ -64,10 +65,17 @@ private slots:
 
     void on_resumeBtn_clicked();
 
+    void askAlgHQues();
+
+    void on_submit_btn_clicked();
+
+    void on_ans_inp_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
 };
 
-//patayin mo na ko please
+
+
 
 #endif // MAINWINDOW_H
