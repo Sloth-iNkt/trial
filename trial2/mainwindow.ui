@@ -371,7 +371,7 @@
        <string notr="true">background-color: rgb(170, 255, 255);</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="easy">
        <widget class="QGroupBox" name="easyBox">
@@ -588,6 +588,32 @@
        <string>Pause</string>
       </property>
      </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>10</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Prepared by:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>10</y>
+        <width>63</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Name</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="pause_win">
      <widget class="QLabel" name="pause_lbl">
@@ -603,7 +629,7 @@
        <string>Pause</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="resumeBtn">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -616,7 +642,7 @@
        <string>Resume</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="retryBtn">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -629,7 +655,7 @@
        <string>Retry</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="menuBtnP">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -644,7 +670,7 @@
      </widget>
     </widget>
     <widget class="QWidget" name="result">
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="remarks">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -657,7 +683,7 @@
        <string>Passed or Not</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="scr_lbl">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -670,7 +696,7 @@
        <string>Score:</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_4">
+     <widget class="QLabel" name="ca_lbl">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -683,7 +709,7 @@
        <string>Correct Answer/s:</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_5">
+     <widget class="QLabel" name="c_ans">
       <property name="geometry">
        <rect>
         <x>170</x>
@@ -696,7 +722,7 @@
        <string>...</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_6">
+     <widget class="QLabel" name="scre">
       <property name="geometry">
        <rect>
         <x>170</x>
@@ -709,7 +735,7 @@
        <string>...</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_7">
+     <widget class="QLabel" name="name">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -722,7 +748,7 @@
        <string>Name: </string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="name_inp">
       <property name="geometry">
        <rect>
         <x>160</x>

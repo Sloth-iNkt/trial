@@ -3,7 +3,10 @@
 #include<QTime>
 
 QString difficulty_ = "";
-int num = 30;
+int score_ = 0;
+int correct_ans = 0;
+int missed_q = 0;
+bool pauseBtn_, resumeBtn_;
 
 void delay()
 {
@@ -11,6 +14,23 @@ void delay()
     while (QTime::currentTime() < dieTime)
         QCoreApplication::processEvents(QEventLoop::AllEvents, 1);
 }
+
+void MainWindow::timer_() {
+    pauseBtn_ = false;
+    resumeBtn_ = false;
+    int num = 30;
+    int i = 0;
+    while(i < num+1) {
+        ui->timer->setText(QString::number(num-i));
+        delay();
+        if (pauseBtn_ == true && resumeBtn_ == false) {
+            continue;
+        } else {
+            i += 1;
+        }
+    }
+}
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -20,7 +40,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
     ui->quizBox->setCurrentIndex(0);
+//    connect(ui->resumeBtn, &QPushButton::clicked, this, &MainWindow::resumeBtnC);
+
 }
+
+
 
 MainWindow::~MainWindow()
 {
@@ -92,24 +116,6 @@ void MainWindow::on_difficultBtn_clicked()
     ui->hq->setText("HARD - Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
 }
 
-
-void MainWindow::on_okaybtn_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(5);
-    ui->diff_label->setText(difficulty_);
-    if (difficulty_ == "easy") {
-        ui->quizBox->setCurrentIndex(0);
-    } else if (difficulty_ == "medium") {
-        ui->quizBox->setCurrentIndex(1);
-    } else {
-        ui->quizBox->setCurrentIndex(2);
-    }
-    for (int i = 0; i < num+1; i++) {
-        ui->timer->setText(QString::number(num-i));
-        delay();
-    }
-}
-
 void MainWindow::on_t1_clicked()
 {
 //    if else kung korik chuchu
@@ -139,11 +145,62 @@ void MainWindow::on_f1_clicked()
 //    ui->stackedWidget->setCurrentIndex(5);
 //}
 
-
-
-
 void MainWindow::on_pause_btn_clicked()
 {
+    pauseBtn_ = true;
+    resumeBtn_ = false;
     ui->stackedWidget->setCurrentIndex(6);
+
 }
+
+void MainWindow::on_resumeBtn_clicked()
+{
+    resumeBtn_ = true;
+    pauseBtn_ = false;
+    ui->stackedWidget->setCurrentIndex(5);
+    ui->diff_label->setText(difficulty_);
+    if (difficulty_ == "easy") {
+        ui->quizBox->setCurrentIndex(0);
+    } else if (difficulty_ == "medium") {
+        ui->quizBox->setCurrentIndex(1);
+    } else {
+        ui->quizBox->setCurrentIndex(2);
+    }
+}
+
+
+void MainWindow::on_okaybtn_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(5);
+    ui->diff_label->setText(difficulty_);
+    if (difficulty_ == "easy") {
+        ui->quizBox->setCurrentIndex(0);
+    } else if (difficulty_ == "medium") {
+        ui->quizBox->setCurrentIndex(1);
+    } else {
+        ui->quizBox->setCurrentIndex(2);
+    }
+    timer_();
+}
+
+void MainWindow::on_menuBtnP_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+
+void MainWindow::on_retryBtn_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(5);
+    ui->diff_label->setText(difficulty_);
+    if (difficulty_ == "easy") {
+        ui->quizBox->setCurrentIndex(0);
+    } else if (difficulty_ == "medium") {
+        ui->quizBox->setCurrentIndex(1);
+    } else {
+        ui->quizBox->setCurrentIndex(2);
+    }
+    timer_();
+}
+
 
