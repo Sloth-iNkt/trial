@@ -1,0 +1,17 @@
+debug/category.o
+debug/difficulty.o
+debug/easywindow.o
+debug/howtoplay.o
+debug/main.o
+debug/mainmenu.o
+debug/mainwindow.o
+debug/mediumwindow.o
+debug/review.o
+debug/moc_category.o
+debug/moc_difficulty.o
+debug/moc_easywindow.o
+debug/moc_howtoplay.o
+debug/moc_mainmenu.o
+debug/moc_mainwindow.o
+debug/moc_mediumwindow.o
+debug/moc_review.o

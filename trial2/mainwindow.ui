@@ -120,12 +120,6 @@
      <widget class="QGroupBox" name="groupBox">
       <property name="geometry">
        <rect>
-<<<<<<< HEAD
-        <x>90</x>
-        <y>60</y>
-        <width>161</width>
-=======
->>>>>>> fb8448eedd2d28454670df4632c82e9912d5a412
         <x>130</x>
         <y>70</y>
         <width>120</width>
@@ -523,90 +517,8 @@
           <height>201</height>
          </rect>
         </property>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <property name="text">
-         <string>Question 1</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="t1">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>160</y>
-          <width>93</width>
-          <height>29</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>True</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="f1">
-        <property name="geometry">
-         <rect>
-          <x>190</x>
-          <y>160</y>
-          <width>93</width>
-          <height>29</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>False</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tof2">
-       <widget class="QLabel" name="eq2">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>30</y>
-          <width>251</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Question 2</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="f2">
-        <property name="geometry">
-         <rect>
-          <x>190</x>
-          <y>150</y>
-          <width>93</width>
-          <height>29</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>False</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="t2">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>150</y>
-          <width>93</width>
-          <height>29</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>PushButton</string>
-=======
         <property name="title">
          <string>hard</string>
->>>>>>> fb8448eedd2d28454670df4632c82e9912d5a412
-=======
-        <property name="title">
-         <string>hard</string>
->>>>>>> fb8448eedd2d28454670df4632c82e9912d5a412
-=======
-        <property name="title">
-         <string>hard</string>
->>>>>>> fb8448eedd2d28454670df4632c82e9912d5a412
         </property>
         <widget class="QLabel" name="hq">
          <property name="geometry">

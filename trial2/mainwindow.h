@@ -1,7 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "ui_mainwindow.h"
 #include <QMainWindow>
 #include <QPushButton>
 
@@ -17,8 +16,6 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
-    Ui::MainWindow *ui;
 
 private slots:
 
@@ -68,12 +65,9 @@ private slots:
     void on_resumeBtn_clicked();
 
 private:
-
+    Ui::MainWindow *ui;
 };
 
-
-
-
-//huhu gumana ka na plz hauf na multi defn yan ala nga sabi
+//patayin mo na ko please
 
 #endif // MAINWINDOW_H
