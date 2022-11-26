@@ -13,6 +13,85 @@ QString topic_ ="";
 int a = 0;
 
 
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
+{
+
+    ui->setupUi(this);
+    ui->stackedWidget->setCurrentIndex(0);
+    ui->quizBox->setCurrentIndex(0);
+
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("./sqlite.db");
+
+    if (db.open()) {
+        ui->title->setText("connected...");
+    } else {
+        ui->title->setText("error! db is not connected");
+    }
+
+    QSqlQuery qry(db);
+    QSqlQuery qry1(db);
+    QSqlQuery qry2(db);
+    QSqlQuery qry3(db);
+    QSqlQuery qry4(db);
+    QSqlQuery qry5(db);
+    QSqlQuery qry6(db);
+
+    qry.prepare("CREATE TABLE IF NOT EXISTS users ("
+                "ID integer PRIMARY KEY AUTOINCREMENT NOT NULL,"
+                "name VARCHAR(20) not null,"
+                "hashed_pass VARCHAR(20) not null);");
+    qry1.prepare("CREATE TABLE IF NOT EXISTS category ("
+                 "ID integer PRIMARY KEY AUTOINCREMENT not null,"
+                 "category VARCHAR(20) not null);");
+    qry2.prepare("CREATE TABLE IF NOT EXISTS questionsEasy ("
+                 "ID integer PRIMARY KEY AUTOINCREMENT NOT NULL,"
+                 "question VARCHAR(100) not null,"
+                 "owner_id integer not null,"
+                 "category_id integer not null);");
+    qry3.prepare("CREATE TABLE IF NOT EXISTS questionMedium ("
+                 "ID integer PRIMARY KEY AUTOINCREMENT NOT NULL,"
+                 "question VARCHAR(100) not null,"
+                 "option1 VARCHAR(100) not null,"
+                 "option2 VARCHAR(100) not null,"
+                 "option3 VARCHAR(100) not null,"
+                 "option4 VARCHAR(100) not null,"
+                 "answer VARCHAR(100) not null,"
+                 "owner_id integer not null,"
+                 "category_id integer not null);");
+    qry4.prepare("CREATE TABLE IF NOT EXISTS questionHard ("
+                 "ID integer PRIMARY KEY AUTOINCREMENT NOT NULL,"
+                 "question VARCHAR(100) not null,"
+                 "answer VARCHAR(100) not null,"
+                 "owner_id integer not null,"
+                 "category_id integer not null);");
+    qry5.prepare("CREATE TABLE IF NOT EXISTS leaderboard ("
+                 "ID integer PRIMARY KEY AUTOINCREMENT NOT NULL,"
+                 "name VARCHAR(20) not null,"
+                 "score integer not null);");
+//    qry6.prepare("CREATE TABLE IF NOT EXISTS reviewers ("
+//                 "ID integer PRIMARY KEY AUTOINCREMENT NOT NULL,"
+//                 ");");
+    if (!qry.exec() ||
+            !qry1.exec() ||
+            !qry2.exec() ||
+            !qry3.exec() ||
+            !qry4.exec() ||
+            !qry5.exec()) {
+        qDebug() << "table not created";
+        return;
+    }
+}
+
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
 void delay()
 {
     QTime dieTime= QTime::currentTime().addSecs(1);
@@ -117,26 +196,6 @@ void MainWindow::asktrigoHQues(){
            ui->stackedWidget->setCurrentIndex(7);
         }
 };
-
-
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
-{
-
-    ui->setupUi(this);
-    ui->stackedWidget->setCurrentIndex(0);
-    ui->quizBox->setCurrentIndex(0);
-//    connect(ui->resumeBtn, &QPushButton::clicked, this, &MainWindow::resumeBtnC);
-
-}
-
-
-
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -383,4 +442,34 @@ void MainWindow::on_submit_btn_clicked()
     }
 }
 
+void MainWindow::on_cus_btn_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(8);
+    ui->ls_box->setCurrentIndex(0);
+    ui->login_sec->setStyleSheet("font: 900 9pt 'Segoe UI Black';"
+                                 "text-decoration: underline;");
+    ui->sign_sec->setStyleSheet("");
+}
+
+void MainWindow::on_login_sec_clicked()
+{
+
+    ui->ls_box->setCurrentIndex(0);
+    ui->login_sec->setStyleSheet("font: 900 9pt 'Segoe UI Black';"
+                                 "text-decoration: underline;");
+    ui->sign_sec->setStyleSheet("");
+}
+
+void MainWindow::on_sign_sec_clicked()
+{
+    ui->ls_box->setCurrentIndex(1);
+    ui->login_sec->setStyleSheet("");
+    ui->sign_sec->setStyleSheet("font: 900 9pt 'Segoe UI Black';"
+                                "text-decoration: underline;");
+}
+
+void MainWindow::on_back_btn_c_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+}
 

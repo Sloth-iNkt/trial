@@ -4,6 +4,9 @@
 #include "ui_mainwindow.h"
 #include <QMainWindow>
 #include <QPushButton>
+#include <QtSql>
+#include <QDebug>
+#include <QFileInfo>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -87,8 +90,17 @@ private slots:
 
 //    void on_ans_inp_textChanged(const QString &arg1);
 
+    void on_cus_btn_clicked();
+
+    void on_login_sec_clicked();
+
+    void on_sign_sec_clicked();
+
+    void on_back_btn_c_clicked();
+
 private:
     Ui::MainWindow *ui;
+    QSqlDatabase db;
 };
 
 
