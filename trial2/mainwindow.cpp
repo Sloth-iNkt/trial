@@ -3,15 +3,20 @@
 #include<QTime>
 #include <QString>
 #include <QInputDialog>
+#include <QFileDialog>
 #include <QCryptographicHash>
+#include <QMessageBox>
 
 QString difficulty_ = "";
 int score_ = 0;
 int correct_ans = 0;
 int missed_q = 0;
 bool pauseBtn_, resumeBtn_;
-QString topic_ ="";
+QString topic_ = "";
 int a = 0;
+int user_id = 0;
+int cat_id = 0;
+bool ans_e;
 
 
 
@@ -48,10 +53,12 @@ MainWindow::MainWindow(QWidget *parent)
                 "hashed_pass VARCHAR(20) not null);");
     qry2.prepare("CREATE TABLE IF NOT EXISTS category ("
                  "ID integer PRIMARY KEY AUTOINCREMENT not null,"
-                 "category VARCHAR(20) not null);");
+                 "category VARCHAR(20) not null,"
+                 "note VARCHAR(100));");
     qry3.prepare("CREATE TABLE IF NOT EXISTS questionsEasy ("
                  "ID integer PRIMARY KEY AUTOINCREMENT NOT NULL,"
                  "question VARCHAR(100) not null,"
+                 "answer BOOLEAN not null,"
                  "owner_id integer not null,"
                  "category_id integer not null,"
                  "foreign key (owner_id) references users(ID),"
@@ -108,6 +115,50 @@ void delay()
     QTime dieTime= QTime::currentTime().addSecs(1);
     while (QTime::currentTime() < dieTime)
         QCoreApplication::processEvents(QEventLoop::AllEvents, 1);
+}
+
+void addUsers (QString name, QString hashed_pass) {
+    QSqlQuery qry;
+    qry.prepare("INSERT INTO users ("
+                "name,"
+                "hashed_pass)"
+                "VALUES (?, ?);");
+    qry.addBindValue(name);
+    qry.addBindValue(hashed_pass);
+
+    if (!qry.exec()) {
+        qDebug() << "Error adding value to database";
+    }
+}
+
+void addcategory (QString category_name, QString note_inp) {
+    QSqlQuery qry;
+    qry.prepare("INSERT INTO category ("
+                "category,"
+                "note)"
+                "VALUES (?, ?);");
+    qry.addBindValue(category_name);
+    qry.addBindValue(note_inp);
+    if (!qry.exec()) {
+        qDebug() << "Error category";
+    }
+}
+
+void addQuestionEasy (QString ques, bool ans, int owner_id, int category_id) {
+    QSqlQuery qry;
+    qry.prepare("INSERT INTO questionseasy ("
+                "question,"
+                "answer,"
+                "owner_id,"
+                "category_id)"
+                "VALUES (?, ?, ?, ?);");
+    qry.addBindValue(ques);
+    qry.addBindValue(ans);
+    qry.addBindValue(owner_id);
+    qry.addBindValue(category_id);
+    if (!qry.exec()) {
+        qDebug() << "error question";
+    }
 }
 
 void MainWindow::timer_() {
@@ -496,20 +547,13 @@ void MainWindow::on_sign_sec_clicked()
 void MainWindow::on_back_btn_c_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
-}
-
-void addUsers (QString name, QString hashed_pass) {
-    QSqlQuery qry;
-    qry.prepare("INSERT INTO users ("
-                "name,"
-                "hashed_pass)"
-                "VALUES (?, ?);");
-    qry.addBindValue(name);
-    qry.addBindValue(hashed_pass);
-
-    if (!qry.exec()) {
-        qDebug() << "Error adding value to database";
-    }
+    ui->name_inp_auth->setText("");
+    ui->pass_inp_auth->setText("");
+    ui->name_inp_auth_s->setText("");
+    ui->pass_inp_auth_s->setText("");
+    ui->error_msg->setText("");
+    ui->error_msg_l->setText("");
+    ui->cpass_->setText("");
 }
 
 
@@ -524,6 +568,11 @@ void MainWindow::on_signup_btn_clicked()
     name_inps = ui->name_inp_auth_s->text();
     pass_inps = ui->pass_inp_auth_s->text();
     cpass_inps = ui->cpass_->text();
+
+    if (name_inps == "" || pass_inps == "" || cpass_inps == "") {
+        ui->error_msg->setText("don't leave it blank");
+        return;
+    }
 
     QSqlQuery qry(db);
 
@@ -572,6 +621,13 @@ void MainWindow::on_login_btn_clicked()
     }
     name_inpl = ui->name_inp_auth->text();
     pass_inpl = ui->pass_inp_auth->text();
+    qDebug() << name_inpl;
+    qDebug() << pass_inpl;
+    if (name_inpl == "" || pass_inpl == "") {
+        ui->error_msg_l->setText("don't leave it blank");
+        return;
+    }
+
     pass_inph = QCryptographicHash::hash((pass_inpl.toLocal8Bit()),QCryptographicHash::Md5);
 
     QSqlQuery qry(db);
@@ -584,7 +640,17 @@ void MainWindow::on_login_btn_clicked()
             qDebug() << name;
             qDebug() << pass;
             qDebug() << id;
-            ui->error_msg_l->setText("korik");
+            user_id = id;
+//            ui->error_msg_l->setText("korik");
+            ui->name_inp_auth->setText("");
+            ui->pass_inp_auth->setText("");
+            ui->name_inp_auth_s->setText("");
+            ui->pass_inp_auth_s->setText("");
+            ui->error_msg->setText("");
+            ui->error_msg_l->setText("");
+            ui->cpass_->setText("");
+            ui->stackedWidget->setCurrentIndex(9);
+            ui->name_1->setText(name);
         }
         else {
             ui->error_msg_l->setText("wrong name or pass");
@@ -592,5 +658,127 @@ void MainWindow::on_login_btn_clicked()
     } else {
         ui->error_msg_l->setText("wrong name or pass");
     }
+}
+
+
+void MainWindow::on_BackBtn_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(8);
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(10);
+    ui->comboBox->setCurrentIndex(0);
+    ui->stackedWidget_2->setCurrentIndex(0);
+//    QString cat = ui->lineEdit_2->text();
+//    QString note = ui->lineEdit_4->text();
+//    QMessageBox msgBox;
+//     msgBox.setText("The document has been modified.");
+//     msgBox.setInformativeText("Do you want to save your changes?");
+//     msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard);
+//     msgBox.setDefaultButton(QMessageBox::Save);
+//     int ret = msgBox.exec();
+//     switch (ret) {
+//       case QMessageBox::Save:
+//           // Save was clicked
+//           qDebug() << cat;
+//           qDebug() << note;
+//           ::addcategory(cat, note);
+//           ui->stackedWidget->setCurrentIndex(10);
+//           ui->comboBox->setCurrentIndex(0);
+//           ui->stackedWidget_2->setCurrentIndex(0);
+//           break;
+//       case QMessageBox::Discard:
+//           // Don't Save was clicked
+//         qDebug() << "bye";
+//           break;
+//     }
+
+//     QSqlQuery qry;
+//     "SELECT name, hashed_pass, ID FROM users "
+//                  "WHERE name=\'" + name_inpl + "\' AND hashed_pass=\'" + pass_inph + "\'"
+//     if (qry.exec("SELECT ID, category, note FROM category "
+//                  "WHERE category=\'" + cat + "\' AND note=\'" + note + "\'")) {
+//        if (qry.next()) {
+//            int id_ = qry.value(0).toInt();
+//            QString category = qry.value(1).toString();
+//            QString note = qry.value(2).toString();
+//            qDebug() << category;
+//            qDebug() << note;
+//            qDebug() << id_;
+//            cat_id = id_;
+//        }
+//     }
+//    QMessageBox::information(this,"Confirmation", "Are You Sure?", QMessageBox::Ok, QMessageBox::Cancel);
+}
+
+void MainWindow::on_BackBtn_2_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(9);
+}
+
+void MainWindow::on_comboBox_activated(int index)
+{
+    qDebug() << index;
+    if (index == 0) {
+        ui->stackedWidget_2->setCurrentIndex(index);
+    } else if (index == 1) {
+        ui->stackedWidget_2->setCurrentIndex(index);
+    } else {
+        ui->stackedWidget_2->setCurrentIndex(index);
+    }
+    ui->trueBtn->setStyleSheet("");
+    ui->falseBtn->setStyleSheet("");
+    ui->lineEdit->setText("");
+}
+
+void MainWindow::on_toolButton_clicked()
+{
+    QString filename = QFileDialog::getOpenFileName(this, "Open a File", "C://");
+    ui->reviewer->setText(filename);
+}
+
+
+void MainWindow::on_pushButton_9_clicked()
+{
+
+}
+
+void MainWindow::on_Add_clicked()
+{
+    QString question = ui->lineEdit->text();
+    if (question == "") {
+        ui->error_msg1->setText("Don't leave it blank");
+        return;
+    }
+    int index_stacked = ui->stackedWidget_2->currentIndex();
+    qDebug() << index_stacked;
+    if (index_stacked == 0) {
+        QString ans = "";
+    }
+
+}
+
+void MainWindow::on_trueBtn_clicked()
+{
+    ui->trueBtn->setStyleSheet("background-color: qlineargradient"
+                               "(spread:pad, x1:0, y1:0, x2:1, y2:1, "
+                               "stop:0 rgba(0, 255, 0, 255), stop:1 "
+                               "rgba(0, 255, 0, 255))");
+    ui->falseBtn->setStyleSheet("");
+    ans_e = true;
+}
+
+
+void MainWindow::on_falseBtn_clicked()
+{
+    ui->falseBtn->setStyleSheet("background-color: qlineargradient"
+                               "(spread:pad, x1:0, y1:0, x2:1, y2:1, "
+                               "stop:0 rgba(0, 255, 0, 255), stop:1 "
+                               "rgba(0, 255, 0, 255))");
+    ui->trueBtn->setStyleSheet("");
+    ans_e = false;
 }
 

@@ -103,7 +103,23 @@ private slots:
 
     void on_signup_btn_clicked();
 
-    void addUsers();
+    void on_BackBtn_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_BackBtn_2_clicked();
+
+    void on_comboBox_activated(int index);
+
+    void on_toolButton_clicked();
+
+    void on_pushButton_9_clicked();
+
+    void on_Add_clicked();
+
+    void on_trueBtn_clicked();
+
+    void on_falseBtn_clicked();
 
 private:
     Ui::MainWindow *ui;
