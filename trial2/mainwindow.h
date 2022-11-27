@@ -7,6 +7,7 @@
 #include <QtSql>
 #include <QDebug>
 #include <QFileInfo>
+#include <QCryptographicHash>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -97,6 +98,12 @@ private slots:
     void on_sign_sec_clicked();
 
     void on_back_btn_c_clicked();
+
+    void on_login_btn_clicked();
+
+    void on_signup_btn_clicked();
+
+    void addUsers();
 
 private:
     Ui::MainWindow *ui;
