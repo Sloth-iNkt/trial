@@ -474,6 +474,7 @@ void MainWindow::on_login_sec_clicked()
     ui->name_inp_auth_s->setText("");
     ui->pass_inp_auth_s->setText("");
     ui->error_msg->setText("");
+    ui->error_msg_l->setText("");
     ui->cpass_->setText("");
 }
 
@@ -488,6 +489,7 @@ void MainWindow::on_sign_sec_clicked()
     ui->name_inp_auth_s->setText("");
     ui->pass_inp_auth_s->setText("");
     ui->error_msg->setText("");
+    ui->error_msg_l->setText("");
     ui->cpass_->setText("");
 }
 
@@ -559,15 +561,6 @@ void MainWindow::on_login_btn_clicked()
     QSqlQuery qry(db);
     qry.exec("SELECT name, hashed_pass FROM users");
 
-//    while (qry.next()) {
-//        QString name = qry.value(0).toString();
-//        if (name_inps == name) {
-//            ui->error_msg->setText(name_inps + " is already taken");
-//            qDebug() << name_inps << " is already taken";
-//            return;
-//        }
-//    }
-
     while (qry.next()) {
         QString name = qry.value(0).toString();
         QString pass = qry.value(1).toString();
@@ -580,11 +573,6 @@ void MainWindow::on_login_btn_clicked()
         } else {
             ui->error_msg_l->setText("username '" + name_inpl + "' doesn\'t exist");
         }
-//        if (name_inp == name) {
-//            ui->error_msg->setText(name_inp + " is already taken");
-//            qDebug() << name_inp << " is already taken";
-//            return;
-//        }
     }
 }
 
