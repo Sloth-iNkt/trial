@@ -526,25 +526,41 @@ void MainWindow::on_signup_btn_clicked()
     cpass_inps = ui->cpass_->text();
 
     QSqlQuery qry(db);
-    qry.exec("SELECT name FROM users");
 
-    while (qry.next()) {
-        QString name = qry.value(0).toString();
-        if (name_inps == name) {
+    if  (qry.exec("SELECT name FROM users "
+                 "WHERE name=\'" + name_inps + "\'")) {
+        if (qry.next()) {
             ui->error_msg->setText(name_inps + " is already taken");
-            qDebug() << name_inps << " is already taken";
-            return;
+        } else {
+            if (pass_inps == cpass_inps) {
+                QString encodedPass = QCryptographicHash::hash((pass_inps.toLocal8Bit()),QCryptographicHash::Md5);
+                qDebug() << name_inps;
+                qDebug() << encodedPass;
+                ::addUsers(name_inps, encodedPass);
+                ui->error_msg->setText("Acc created");
+            } else {
+                ui->error_msg->setText("Recheck your pass");
+            }
         }
     }
-    if (pass_inps == cpass_inps) {
-        QString encodedPass = QCryptographicHash::hash((pass_inps.toLocal8Bit()),QCryptographicHash::Md5);
-        qDebug() << name_inps;
-        qDebug() << encodedPass;
-        ::addUsers(name_inps, encodedPass);
-        ui->error_msg->setText("Acc created");
-    } else {
-        ui->error_msg->setText("Recheck your pass");
-    }
+
+//    while (qry.next()) {
+//        QString name = qry.value(0).toString();
+//        if (name_inps == name) {
+//            ui->error_msg->setText(name_inps + " is already taken");
+//            qDebug() << name_inps << " is already taken";
+//            return;
+//        }
+//    }
+//    if (pass_inps == cpass_inps) {
+//        QString encodedPass = QCryptographicHash::hash((pass_inps.toLocal8Bit()),QCryptographicHash::Md5);
+//        qDebug() << name_inps;
+//        qDebug() << encodedPass;
+//        ::addUsers(name_inps, encodedPass);
+//        ui->error_msg->setText("Acc created");
+//    } else {
+//        ui->error_msg->setText("Recheck your pass");
+//    }
 }
 
 void MainWindow::on_login_btn_clicked()
@@ -559,20 +575,22 @@ void MainWindow::on_login_btn_clicked()
     pass_inph = QCryptographicHash::hash((pass_inpl.toLocal8Bit()),QCryptographicHash::Md5);
 
     QSqlQuery qry(db);
-    qry.exec("SELECT name, hashed_pass FROM users");
-
-    while (qry.next()) {
-        QString name = qry.value(0).toString();
-        QString pass = qry.value(1).toString();
-        if (name_inpl == name) {
-            if (pass_inph != pass) {
-                ui->error_msg_l->setText("incorrect password");
-            } else {
-                ui->error_msg_l->setText("Okay");
-            }
-        } else {
-            ui->error_msg_l->setText("username '" + name_inpl + "' doesn\'t exist");
+    if (qry.exec("SELECT name, hashed_pass, ID FROM users "
+             "WHERE name=\'" + name_inpl + "\' AND hashed_pass=\'" + pass_inph + "\'")) {
+        if (qry.next()) {
+            QString name = qry.value(0).toString();
+            QString pass = qry.value(1).toString();
+            int id = qry.value(2).toInt();
+            qDebug() << name;
+            qDebug() << pass;
+            qDebug() << id;
+            ui->error_msg_l->setText("korik");
         }
+        else {
+            ui->error_msg_l->setText("wrong name or pass");
+        }
+    } else {
+        ui->error_msg_l->setText("wrong name or pass");
     }
 }
 
