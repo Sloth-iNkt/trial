@@ -655,8 +655,6 @@ void MainWindow::on_login_btn_clicked()
         else {
             ui->error_msg_l->setText("wrong name or pass");
         }
-    } else {
-        ui->error_msg_l->setText("wrong name or pass");
     }
 }
 
@@ -669,48 +667,48 @@ void MainWindow::on_BackBtn_clicked()
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(10);
-    ui->comboBox->setCurrentIndex(0);
-    ui->stackedWidget_2->setCurrentIndex(0);
-//    QString cat = ui->lineEdit_2->text();
-//    QString note = ui->lineEdit_4->text();
-//    QMessageBox msgBox;
-//     msgBox.setText("The document has been modified.");
-//     msgBox.setInformativeText("Do you want to save your changes?");
-//     msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard);
-//     msgBox.setDefaultButton(QMessageBox::Save);
-//     int ret = msgBox.exec();
-//     switch (ret) {
-//       case QMessageBox::Save:
-//           // Save was clicked
-//           qDebug() << cat;
-//           qDebug() << note;
-//           ::addcategory(cat, note);
-//           ui->stackedWidget->setCurrentIndex(10);
-//           ui->comboBox->setCurrentIndex(0);
-//           ui->stackedWidget_2->setCurrentIndex(0);
-//           break;
-//       case QMessageBox::Discard:
-//           // Don't Save was clicked
-//         qDebug() << "bye";
-//           break;
-//     }
+//    ui->stackedWidget->setCurrentIndex(10);
+//    ui->comboBox->setCurrentIndex(0);
+//    ui->stackedWidget_2->setCurrentIndex(0);
+    QString cat = ui->lineEdit_2->text();
+    QString note = ui->lineEdit_4->text();
+    QMessageBox msgBox;
+     msgBox.setText("The document has been modified.");
+     msgBox.setInformativeText("Do you want to save your changes?");
+     msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard);
+     msgBox.setDefaultButton(QMessageBox::Save);
+     int ret = msgBox.exec();
+     switch (ret) {
+       case QMessageBox::Save:
+           // Save was clicked
+           qDebug() << cat;
+           qDebug() << note;
+           ::addcategory(cat, note);
+           ui->stackedWidget->setCurrentIndex(10);
+           ui->comboBox->setCurrentIndex(0);
+           ui->stackedWidget_2->setCurrentIndex(0);
+           break;
+       case QMessageBox::Discard:
+           // Don't Save was clicked
+         qDebug() << "bye";
+           break;
+     }
 
-//     QSqlQuery qry;
+     QSqlQuery qry;
 //     "SELECT name, hashed_pass, ID FROM users "
 //                  "WHERE name=\'" + name_inpl + "\' AND hashed_pass=\'" + pass_inph + "\'"
-//     if (qry.exec("SELECT ID, category, note FROM category "
-//                  "WHERE category=\'" + cat + "\' AND note=\'" + note + "\'")) {
-//        if (qry.next()) {
-//            int id_ = qry.value(0).toInt();
-//            QString category = qry.value(1).toString();
-//            QString note = qry.value(2).toString();
-//            qDebug() << category;
-//            qDebug() << note;
-//            qDebug() << id_;
-//            cat_id = id_;
-//        }
-//     }
+     if (qry.exec("SELECT ID, category, note FROM category "
+                  "WHERE category=\'" + cat + "\' AND note=\'" + note + "\'")) {
+        if (qry.next()) {
+            int id_ = qry.value(0).toInt();
+            QString category = qry.value(1).toString();
+            QString note = qry.value(2).toString();
+            qDebug() << category;
+            qDebug() << note;
+            qDebug() << id_;
+            cat_id = id_;
+        }
+     }
 //    QMessageBox::information(this,"Confirmation", "Are You Sure?", QMessageBox::Ok, QMessageBox::Cancel);
 }
 
@@ -756,7 +754,44 @@ void MainWindow::on_Add_clicked()
     int index_stacked = ui->stackedWidget_2->currentIndex();
     qDebug() << index_stacked;
     if (index_stacked == 0) {
-        QString ans = "";
+//        QString ques, bool ans, int owner_id, int category_id
+        qDebug() << question;
+        qDebug() << ans_e;
+        qDebug() << user_id;
+        qDebug() << cat_id;
+//        qDebug() << ui->trueBtn->;
+//        if (ui->trueBtn->isChecked()) {
+//            qDebug() << "eurt";
+//        } else if (ui->falseBtn->isChecked()) {
+//            qDebug() << "not eurt";
+//        } else {
+//            qDebug() << "pili ka sis";
+//            return;
+//        }
+//        ui->trueBtn->clicked(false);
+
+
+        QMessageBox msgBox1;
+         msgBox1.setText("The document has been modified.");
+         msgBox1.setInformativeText("Add?");
+         msgBox1.setStandardButtons(QMessageBox::Save | QMessageBox::Discard);
+         msgBox1.setDefaultButton(QMessageBox::Save);
+         int ret = msgBox1.exec();
+         switch (ret) {
+           case QMessageBox::Save:
+               // Save was clicked
+               ::addQuestionEasy(question, ans_e, user_id, cat_id);
+               ui->lineEdit->setText("");
+               ui->falseBtn->setStyleSheet("");
+               ui->trueBtn->setStyleSheet("");
+               qDebug() << ans_e;
+               qDebug() << "asd";
+               break;
+           case QMessageBox::Discard:
+               // Don't Save was clicked
+             qDebug() << "bye";
+               break;
+         }
     }
 
 }
