@@ -783,7 +783,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="login_top">
        <widget class="QLabel" name="name_lbl">

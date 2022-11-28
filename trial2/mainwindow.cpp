@@ -155,9 +155,79 @@ void addQuestionEasy (QString ques, bool ans, int owner_id, int category_id) {
     qry.addBindValue(owner_id);
     qry.addBindValue(category_id);
     if (!qry.exec()) {
-        qDebug() << "error question";
+        qDebug() << "error easy";
     }
 }
+
+void addQuestionMed (QString ques, QString opt1, QString opt2, QString opt3,
+                     QString opt4, QString ans, int owner_id, int category_id) {
+    QSqlQuery qry;
+    qry.prepare("INSERT INTO questionMedium ("
+                "question,"
+                "option1,"
+                "option2,"
+                "option3,"
+                "option4,"
+                "answer,"
+                "owner_id,"
+                "category_id)"
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+    qry.addBindValue(ques);
+    qry.addBindValue(opt1);
+    qry.addBindValue(opt2);
+    qry.addBindValue(opt3);
+    qry.addBindValue(opt4);
+    qry.addBindValue(ans);
+    qry.addBindValue(owner_id);
+    qry.addBindValue(category_id);
+    if (!qry.exec()) {
+        qDebug() << "error med";
+    }
+}
+
+void addQuestionHard (QString ques, QString ans, int owner_id, int category_id) {
+    QSqlQuery qry;
+    qry.prepare("INSERT INTO questionHard ("
+                "question,"
+                "answer,"
+                "owner_id,"
+                "category_id)"
+                "VALUES (?, ?, ?, ?);");
+    qry.addBindValue(ques);
+    qry.addBindValue(ans);
+    qry.addBindValue(owner_id);
+    qry.addBindValue(category_id);
+    if (!qry.exec()) {
+        qDebug() << "error hard";
+    }
+}
+
+void Leaderboard (QString name, int score) {
+    QSqlQuery qry;
+    qry.prepare("INSERT INTO leaderboard("
+                "name,"
+                "score)"
+                "VALUES (?, ?);");
+    qry.addBindValue(name);
+    qry.addBindValue(score);
+    if (!qry.exec()) {
+        qDebug() << "error leaderboard";
+    }
+}
+
+void Reviewer (QString fileN, QByteArray file) {
+    QSqlQuery qry;
+    qry.prepare("INSERT INTO reviewers ("
+                "file_name,"
+                "file)"
+                "VALUES (?, ?);");
+    qry.addBindValue(fileN);
+    qry.addBindValue(file);
+    if (!qry.exec()) {
+        qDebug() << "error reviewer";
+    }
+}
+
 
 void MainWindow::timer_() {
     pauseBtn_ = false;
@@ -264,7 +334,7 @@ void MainWindow::asktrigoHQues(){
 void MainWindow::on_pushButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
-    ui -> scoreLbl -> setText(QString::number(score_));
+//    ui->scoreLbl->setText(QString::number(score_)); !!!!!!!!!!!!!!!!!! para san to????? ang aga naman ng sa score HAHA
 }
 
 void MainWindow::on_quizBtn_clicked()
