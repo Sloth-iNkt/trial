@@ -11,13 +11,16 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QToolButton>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -78,6 +81,7 @@ public:
     QPushButton *pause_btn;
     QLabel *label;
     QLabel *label_2;
+    QLabel *scoreLbl;
     QWidget *pause_win;
     QLabel *pause_lbl;
     QPushButton *resumeBtn;
@@ -91,6 +95,68 @@ public:
     QLabel *scre;
     QLabel *name;
     QLineEdit *name_inp;
+    QWidget *auth;
+    QStackedWidget *ls_box;
+    QWidget *login_top;
+    QLabel *name_lbl;
+    QLabel *pass_lbl;
+    QPushButton *login_btn;
+    QLineEdit *name_inp_auth;
+    QLineEdit *pass_inp_auth;
+    QLabel *label_3;
+    QLabel *error_msg_l;
+    QWidget *sign_up_top;
+    QLabel *name_lbl_s;
+    QLabel *pass_lbl_s;
+    QLabel *pass_lbl_s_c;
+    QPushButton *signup_btn;
+    QLineEdit *name_inp_auth_s;
+    QLineEdit *pass_inp_auth_s;
+    QLineEdit *cpass_;
+    QLabel *label_4;
+    QLabel *error_msg;
+    QPushButton *login_sec;
+    QPushButton *sign_sec;
+    QPushButton *back_btn_c;
+    QWidget *firstform;
+    QPushButton *BackBtn;
+    QPushButton *pushButton_2;
+    QLabel *label_7;
+    QLineEdit *lineEdit_4;
+    QWidget *layoutWidget;
+    QHBoxLayout *horizontalLayout_2;
+    QHBoxLayout *horizontalLayout;
+    QLabel *label_8;
+    QLineEdit *reviewer;
+    QToolButton *toolButton;
+    QWidget *layoutWidget1;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *label_6;
+    QLineEdit *lineEdit_2;
+    QWidget *layoutWidget2;
+    QHBoxLayout *horizontalLayout_4;
+    QLabel *label_5;
+    QLineEdit *name_1;
+    QWidget *secondform;
+    QPushButton *BackBtn_2;
+    QComboBox *comboBox;
+    QStackedWidget *stackedWidget_2;
+    QWidget *page;
+    QPushButton *trueBtn;
+    QPushButton *falseBtn;
+    QWidget *page_2;
+    QPushButton *pushButton_5;
+    QPushButton *pushButton_6;
+    QPushButton *pushButton_7;
+    QPushButton *pushButton_8;
+    QWidget *page_3;
+    QLineEdit *lineEdit_5;
+    QLineEdit *lineEdit;
+    QLabel *label_9;
+    QPushButton *Add;
+    QPushButton *pushButton_9;
+    QLabel *error_msg1;
+    QWidget *confirmation;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -265,6 +331,9 @@ public:
         label_2 = new QLabel(quiz);
         label_2->setObjectName("label_2");
         label_2->setGeometry(QRect(320, 10, 63, 20));
+        scoreLbl = new QLabel(quiz);
+        scoreLbl->setObjectName("scoreLbl");
+        scoreLbl->setGeometry(QRect(50, 70, 63, 20));
         stackedWidget->addWidget(quiz);
         pause_win = new QWidget();
         pause_win->setObjectName("pause_win");
@@ -305,6 +374,225 @@ public:
         name_inp->setObjectName("name_inp");
         name_inp->setGeometry(QRect(160, 210, 113, 26));
         stackedWidget->addWidget(result);
+        auth = new QWidget();
+        auth->setObjectName("auth");
+        ls_box = new QStackedWidget(auth);
+        ls_box->setObjectName("ls_box");
+        ls_box->setGeometry(QRect(30, 80, 321, 251));
+        login_top = new QWidget();
+        login_top->setObjectName("login_top");
+        name_lbl = new QLabel(login_top);
+        name_lbl->setObjectName("name_lbl");
+        name_lbl->setGeometry(QRect(20, 40, 63, 20));
+        pass_lbl = new QLabel(login_top);
+        pass_lbl->setObjectName("pass_lbl");
+        pass_lbl->setGeometry(QRect(10, 100, 91, 20));
+        login_btn = new QPushButton(login_top);
+        login_btn->setObjectName("login_btn");
+        login_btn->setGeometry(QRect(100, 180, 93, 29));
+        login_btn->setStyleSheet(QString::fromUtf8(""));
+        name_inp_auth = new QLineEdit(login_top);
+        name_inp_auth->setObjectName("name_inp_auth");
+        name_inp_auth->setGeometry(QRect(90, 40, 113, 26));
+        pass_inp_auth = new QLineEdit(login_top);
+        pass_inp_auth->setObjectName("pass_inp_auth");
+        pass_inp_auth->setGeometry(QRect(90, 100, 113, 26));
+        pass_inp_auth->setEchoMode(QLineEdit::Password);
+        label_3 = new QLabel(login_top);
+        label_3->setObjectName("label_3");
+        label_3->setGeometry(QRect(10, 220, 131, 20));
+        error_msg_l = new QLabel(login_top);
+        error_msg_l->setObjectName("error_msg_l");
+        error_msg_l->setGeometry(QRect(30, 150, 271, 20));
+        ls_box->addWidget(login_top);
+        sign_up_top = new QWidget();
+        sign_up_top->setObjectName("sign_up_top");
+        name_lbl_s = new QLabel(sign_up_top);
+        name_lbl_s->setObjectName("name_lbl_s");
+        name_lbl_s->setGeometry(QRect(20, 70, 63, 20));
+        pass_lbl_s = new QLabel(sign_up_top);
+        pass_lbl_s->setObjectName("pass_lbl_s");
+        pass_lbl_s->setGeometry(QRect(20, 110, 81, 20));
+        pass_lbl_s_c = new QLabel(sign_up_top);
+        pass_lbl_s_c->setObjectName("pass_lbl_s_c");
+        pass_lbl_s_c->setGeometry(QRect(20, 150, 131, 20));
+        signup_btn = new QPushButton(sign_up_top);
+        signup_btn->setObjectName("signup_btn");
+        signup_btn->setGeometry(QRect(110, 210, 93, 29));
+        name_inp_auth_s = new QLineEdit(sign_up_top);
+        name_inp_auth_s->setObjectName("name_inp_auth_s");
+        name_inp_auth_s->setGeometry(QRect(170, 70, 113, 26));
+        pass_inp_auth_s = new QLineEdit(sign_up_top);
+        pass_inp_auth_s->setObjectName("pass_inp_auth_s");
+        pass_inp_auth_s->setGeometry(QRect(170, 110, 113, 26));
+        pass_inp_auth_s->setEchoMode(QLineEdit::Password);
+        cpass_ = new QLineEdit(sign_up_top);
+        cpass_->setObjectName("cpass_");
+        cpass_->setGeometry(QRect(170, 150, 113, 26));
+        cpass_->setEchoMode(QLineEdit::Password);
+        label_4 = new QLabel(sign_up_top);
+        label_4->setObjectName("label_4");
+        label_4->setGeometry(QRect(20, 220, 111, 20));
+        error_msg = new QLabel(sign_up_top);
+        error_msg->setObjectName("error_msg");
+        error_msg->setGeometry(QRect(20, 190, 271, 20));
+        ls_box->addWidget(sign_up_top);
+        login_sec = new QPushButton(auth);
+        login_sec->setObjectName("login_sec");
+        login_sec->setGeometry(QRect(30, 40, 151, 29));
+        login_sec->setStyleSheet(QString::fromUtf8(""));
+        sign_sec = new QPushButton(auth);
+        sign_sec->setObjectName("sign_sec");
+        sign_sec->setGeometry(QRect(180, 40, 151, 29));
+        back_btn_c = new QPushButton(auth);
+        back_btn_c->setObjectName("back_btn_c");
+        back_btn_c->setGeometry(QRect(10, 0, 93, 29));
+        stackedWidget->addWidget(auth);
+        firstform = new QWidget();
+        firstform->setObjectName("firstform");
+        BackBtn = new QPushButton(firstform);
+        BackBtn->setObjectName("BackBtn");
+        BackBtn->setGeometry(QRect(10, 10, 93, 29));
+        pushButton_2 = new QPushButton(firstform);
+        pushButton_2->setObjectName("pushButton_2");
+        pushButton_2->setGeometry(QRect(250, 310, 93, 29));
+        label_7 = new QLabel(firstform);
+        label_7->setObjectName("label_7");
+        label_7->setGeometry(QRect(30, 200, 58, 26));
+        lineEdit_4 = new QLineEdit(firstform);
+        lineEdit_4->setObjectName("lineEdit_4");
+        lineEdit_4->setGeometry(QRect(100, 200, 231, 91));
+        lineEdit_4->setFocusPolicy(Qt::StrongFocus);
+        lineEdit_4->setReadOnly(false);
+        layoutWidget = new QWidget(firstform);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(30, 150, 252, 30));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget);
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName("horizontalLayout");
+        label_8 = new QLabel(layoutWidget);
+        label_8->setObjectName("label_8");
+
+        horizontalLayout->addWidget(label_8);
+
+        reviewer = new QLineEdit(layoutWidget);
+        reviewer->setObjectName("reviewer");
+
+        horizontalLayout->addWidget(reviewer);
+
+        toolButton = new QToolButton(layoutWidget);
+        toolButton->setObjectName("toolButton");
+
+        horizontalLayout->addWidget(toolButton);
+
+
+        horizontalLayout_2->addLayout(horizontalLayout);
+
+        layoutWidget1 = new QWidget(firstform);
+        layoutWidget1->setObjectName("layoutWidget1");
+        layoutWidget1->setGeometry(QRect(30, 100, 231, 28));
+        horizontalLayout_3 = new QHBoxLayout(layoutWidget1);
+        horizontalLayout_3->setObjectName("horizontalLayout_3");
+        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
+        label_6 = new QLabel(layoutWidget1);
+        label_6->setObjectName("label_6");
+
+        horizontalLayout_3->addWidget(label_6);
+
+        lineEdit_2 = new QLineEdit(layoutWidget1);
+        lineEdit_2->setObjectName("lineEdit_2");
+        lineEdit_2->setFocusPolicy(Qt::StrongFocus);
+        lineEdit_2->setReadOnly(false);
+
+        horizontalLayout_3->addWidget(lineEdit_2);
+
+        layoutWidget2 = new QWidget(firstform);
+        layoutWidget2->setObjectName("layoutWidget2");
+        layoutWidget2->setGeometry(QRect(30, 50, 171, 28));
+        horizontalLayout_4 = new QHBoxLayout(layoutWidget2);
+        horizontalLayout_4->setObjectName("horizontalLayout_4");
+        horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
+        label_5 = new QLabel(layoutWidget2);
+        label_5->setObjectName("label_5");
+
+        horizontalLayout_4->addWidget(label_5);
+
+        name_1 = new QLineEdit(layoutWidget2);
+        name_1->setObjectName("name_1");
+        name_1->setFocusPolicy(Qt::StrongFocus);
+        name_1->setReadOnly(true);
+
+        horizontalLayout_4->addWidget(name_1);
+
+        stackedWidget->addWidget(firstform);
+        secondform = new QWidget();
+        secondform->setObjectName("secondform");
+        BackBtn_2 = new QPushButton(secondform);
+        BackBtn_2->setObjectName("BackBtn_2");
+        BackBtn_2->setGeometry(QRect(10, 10, 93, 29));
+        comboBox = new QComboBox(secondform);
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->setObjectName("comboBox");
+        comboBox->setGeometry(QRect(70, 50, 231, 26));
+        stackedWidget_2 = new QStackedWidget(secondform);
+        stackedWidget_2->setObjectName("stackedWidget_2");
+        stackedWidget_2->setGeometry(QRect(30, 200, 311, 101));
+        stackedWidget_2->setStyleSheet(QString::fromUtf8("background-color: rgb(170, 170, 255);"));
+        page = new QWidget();
+        page->setObjectName("page");
+        trueBtn = new QPushButton(page);
+        trueBtn->setObjectName("trueBtn");
+        trueBtn->setGeometry(QRect(20, 40, 93, 29));
+        trueBtn->setStyleSheet(QString::fromUtf8(""));
+        falseBtn = new QPushButton(page);
+        falseBtn->setObjectName("falseBtn");
+        falseBtn->setGeometry(QRect(190, 40, 93, 29));
+        falseBtn->setStyleSheet(QString::fromUtf8(""));
+        stackedWidget_2->addWidget(page);
+        page_2 = new QWidget();
+        page_2->setObjectName("page_2");
+        pushButton_5 = new QPushButton(page_2);
+        pushButton_5->setObjectName("pushButton_5");
+        pushButton_5->setGeometry(QRect(20, 10, 93, 29));
+        pushButton_6 = new QPushButton(page_2);
+        pushButton_6->setObjectName("pushButton_6");
+        pushButton_6->setGeometry(QRect(20, 60, 93, 29));
+        pushButton_7 = new QPushButton(page_2);
+        pushButton_7->setObjectName("pushButton_7");
+        pushButton_7->setGeometry(QRect(190, 10, 93, 29));
+        pushButton_8 = new QPushButton(page_2);
+        pushButton_8->setObjectName("pushButton_8");
+        pushButton_8->setGeometry(QRect(190, 60, 93, 29));
+        stackedWidget_2->addWidget(page_2);
+        page_3 = new QWidget();
+        page_3->setObjectName("page_3");
+        lineEdit_5 = new QLineEdit(page_3);
+        lineEdit_5->setObjectName("lineEdit_5");
+        lineEdit_5->setGeometry(QRect(20, 40, 271, 41));
+        stackedWidget_2->addWidget(page_3);
+        lineEdit = new QLineEdit(secondform);
+        lineEdit->setObjectName("lineEdit");
+        lineEdit->setGeometry(QRect(30, 90, 321, 111));
+        label_9 = new QLabel(secondform);
+        label_9->setObjectName("label_9");
+        label_9->setGeometry(QRect(30, 80, 63, 20));
+        Add = new QPushButton(secondform);
+        Add->setObjectName("Add");
+        Add->setGeometry(QRect(270, 310, 93, 29));
+        pushButton_9 = new QPushButton(secondform);
+        pushButton_9->setObjectName("pushButton_9");
+        pushButton_9->setGeometry(QRect(250, 10, 93, 29));
+        error_msg1 = new QLabel(secondform);
+        error_msg1->setObjectName("error_msg1");
+        error_msg1->setGeometry(QRect(30, 310, 191, 20));
+        stackedWidget->addWidget(secondform);
+        confirmation = new QWidget();
+        confirmation->setObjectName("confirmation");
+        stackedWidget->addWidget(confirmation);
         MainWindow->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -313,7 +601,9 @@ public:
         retranslateUi(MainWindow);
 
         stackedWidget->setCurrentIndex(5);
-        quizBox->setCurrentIndex(1);
+        quizBox->setCurrentIndex(2);
+        ls_box->setCurrentIndex(1);
+        stackedWidget_2->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -362,6 +652,7 @@ public:
         pause_btn->setText(QCoreApplication::translate("MainWindow", "Pause", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Prepared by:", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Name", nullptr));
+        scoreLbl->setText(QCoreApplication::translate("MainWindow", "scoreLbl", nullptr));
         pause_lbl->setText(QCoreApplication::translate("MainWindow", "Pause", nullptr));
         resumeBtn->setText(QCoreApplication::translate("MainWindow", "Resume", nullptr));
         retryBtn->setText(QCoreApplication::translate("MainWindow", "Retry", nullptr));
@@ -372,6 +663,45 @@ public:
         c_ans->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
         scre->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
         name->setText(QCoreApplication::translate("MainWindow", "Name: ", nullptr));
+        name_lbl->setText(QCoreApplication::translate("MainWindow", "name:", nullptr));
+        pass_lbl->setText(QCoreApplication::translate("MainWindow", "password:", nullptr));
+        login_btn->setText(QCoreApplication::translate("MainWindow", "Login", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "Check lang", nullptr));
+        error_msg_l->setText(QString());
+        name_lbl_s->setText(QCoreApplication::translate("MainWindow", "name:", nullptr));
+        pass_lbl_s->setText(QCoreApplication::translate("MainWindow", "password:", nullptr));
+        pass_lbl_s_c->setText(QCoreApplication::translate("MainWindow", "confirm password:", nullptr));
+        signup_btn->setText(QCoreApplication::translate("MainWindow", "Sign Up", nullptr));
+        label_4->setText(QCoreApplication::translate("MainWindow", "Insert into user", nullptr));
+        error_msg->setText(QString());
+        login_sec->setText(QCoreApplication::translate("MainWindow", "Login", nullptr));
+        sign_sec->setText(QCoreApplication::translate("MainWindow", "Sign-up", nullptr));
+        back_btn_c->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
+        BackBtn->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("MainWindow", "Next", nullptr));
+        label_7->setText(QCoreApplication::translate("MainWindow", "category", nullptr));
+        lineEdit_4->setText(QString());
+        label_8->setText(QCoreApplication::translate("MainWindow", "reviewer", nullptr));
+        toolButton->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
+        label_6->setText(QCoreApplication::translate("MainWindow", "category", nullptr));
+        lineEdit_2->setText(QString());
+        label_5->setText(QCoreApplication::translate("MainWindow", "name", nullptr));
+        name_1->setText(QString());
+        BackBtn_2->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
+        comboBox->setItemText(0, QCoreApplication::translate("MainWindow", "True or False", nullptr));
+        comboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Multiple Choices", nullptr));
+        comboBox->setItemText(2, QCoreApplication::translate("MainWindow", "Identification", nullptr));
+
+        trueBtn->setText(QCoreApplication::translate("MainWindow", "True", nullptr));
+        falseBtn->setText(QCoreApplication::translate("MainWindow", "False", nullptr));
+        pushButton_5->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        pushButton_6->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        pushButton_7->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        pushButton_8->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        label_9->setText(QCoreApplication::translate("MainWindow", "Question", nullptr));
+        Add->setText(QCoreApplication::translate("MainWindow", "Add", nullptr));
+        pushButton_9->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
+        error_msg1->setText(QString());
     } // retranslateUi
 
 };

@@ -18,8 +18,6 @@ int user_id = 0;
 int cat_id = 0;
 bool ans_e;
 
-
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -176,6 +174,8 @@ void MainWindow::timer_() {
         }
     }
 }
+
+//question arrays
 std::string algEQarr []= {"eaq1", "eaq2", "eaq3", "eaq4", "eaq5"};
 std::string geoEQarr []= {"egq1", "egq2", "egq3", "egq4", "egq5"};
 std::string trigoEQarr []= {"etq1 ", "etq2", "etq3", "etq4", "etq5"};
@@ -185,6 +185,7 @@ std::string trigoMQarr []= {"mtq1 ", "mtq2", "mtq3", "mtq4", "mtq5"};
 std::string algHQarr []= {"x^2 + 11x + 28 ", "x^2 + 6x + 5", "x^2 + 4x", "x^2 + 7x", "x^2 - 4x + 4"};
 std::string geoHQarr []= {"gq1", "gq2", "gq3", "gq4", "gq5"};
 std::string trigoHQarr []= {"tq1 ", "tq2", "tq3", "tq4", "tq5"};
+
 
 void MainWindow::askAlgEQues(){
         ui -> eq -> setText(QString::fromStdString(algEQarr[a]));
@@ -259,9 +260,11 @@ void MainWindow::asktrigoHQues(){
         }
 };
 
+//buttons
 void MainWindow::on_pushButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
+    ui -> scoreLbl -> setText(QString::number(score_));
 }
 
 void MainWindow::on_quizBtn_clicked()
@@ -493,6 +496,14 @@ void MainWindow::on_submit_btn_clicked()
     if (hardAns != "" && topic_ == "alg"){
         ui -> ans_inp -> setText("");
         askAlgHQues();
+//    QString ques = ui -> hq -> text();
+//    QString hehe = QString::fromStdString(algHQarr[a]);
+        if(hardAns != "1" /*&& ques == hehe*/){
+            score_ += 0;
+        }else {
+            score_++;
+        };
+        ui -> scoreLbl -> setText(QString::number(score_));
     } else if (hardAns != "" && topic_ == "geo") {
         ui -> ans_inp -> setText("");
         askgeoHQues();
@@ -504,6 +515,8 @@ void MainWindow::on_submit_btn_clicked()
     }
 }
 
+
+//custom
 void MainWindow::on_cus_btn_clicked()
 {
     ui->stackedWidget->setCurrentIndex(8);
@@ -695,8 +708,7 @@ void MainWindow::on_pushButton_2_clicked()
      }
 
      QSqlQuery qry;
-//     "SELECT name, hashed_pass, ID FROM users "
-//                  "WHERE name=\'" + name_inpl + "\' AND hashed_pass=\'" + pass_inph + "\'"
+
      if (qry.exec("SELECT ID, category, note FROM category "
                   "WHERE category=\'" + cat + "\' AND note=\'" + note + "\'")) {
         if (qry.next()) {

@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>10</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="main_page">
      <widget class="QLabel" name="title">
@@ -612,6 +612,19 @@
       </property>
       <property name="text">
        <string>Name</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="scoreLbl">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>70</y>
+        <width>63</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>scoreLbl</string>
       </property>
      </widget>
     </widget>
