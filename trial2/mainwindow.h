@@ -107,7 +107,7 @@ private slots:
 
     void on_pushButton_2_clicked();
 
-    void on_BackBtn_2_clicked();
+//    void on_BackBtn_2_clicked();
 
     void on_comboBox_activated(int index);
 

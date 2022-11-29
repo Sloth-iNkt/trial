@@ -15,6 +15,9 @@ bool pauseBtn_, resumeBtn_;
 QString topic_ = "";
 int a = 0;
 int user_id = 0;
+QString namee;
+QString catt;
+int question_no_easy = 1;
 int cat_id = 0;
 bool ans_e;
 
@@ -84,6 +87,7 @@ MainWindow::MainWindow(QWidget *parent)
     qry6.prepare("CREATE TABLE IF NOT EXISTS leaderboard ("
                  "ID integer PRIMARY KEY AUTOINCREMENT NOT NULL,"
                  "name VARCHAR(20) not null unique,"
+                 "difficulty VARCHAR(20) not null,"
                  "score integer not null);");
     qry7.prepare("CREATE TABLE IF NOT EXISTS reviewers ("
                  "ID integer PRIMARY KEY AUTOINCREMENT NOT NULL,"
@@ -225,6 +229,24 @@ void Reviewer (QString fileN, QByteArray file) {
     qry.addBindValue(file);
     if (!qry.exec()) {
         qDebug() << "error reviewer";
+    }
+}
+
+void q_num (int owner_id, int cat_id) {
+    QSqlQuery qry;
+    qry.prepare("SELECT owner_id, category_id FROM questionsEasy "
+                "WHERE owner_id = ? AND category_id = ?");
+    qry.bindValue( 0, owner_id );
+    qry.bindValue(1, cat_id);
+    qDebug() << owner_id;
+    qDebug() << cat_id;
+
+    if (qry.exec()) {
+        qDebug() << "di na error";
+        if (qry.next()) {
+            qDebug() << "1";
+            question_no_easy += 1;
+        }
     }
 }
 
@@ -675,24 +697,6 @@ void MainWindow::on_signup_btn_clicked()
             }
         }
     }
-
-//    while (qry.next()) {
-//        QString name = qry.value(0).toString();
-//        if (name_inps == name) {
-//            ui->error_msg->setText(name_inps + " is already taken");
-//            qDebug() << name_inps << " is already taken";
-//            return;
-//        }
-//    }
-//    if (pass_inps == cpass_inps) {
-//        QString encodedPass = QCryptographicHash::hash((pass_inps.toLocal8Bit()),QCryptographicHash::Md5);
-//        qDebug() << name_inps;
-//        qDebug() << encodedPass;
-//        ::addUsers(name_inps, encodedPass);
-//        ui->error_msg->setText("Acc created");
-//    } else {
-//        ui->error_msg->setText("Recheck your pass");
-//    }
 }
 
 void MainWindow::on_login_btn_clicked()
@@ -724,6 +728,7 @@ void MainWindow::on_login_btn_clicked()
             qDebug() << pass;
             qDebug() << id;
             user_id = id;
+            namee = name;
 //            ui->error_msg_l->setText("korik");
             ui->name_inp_auth->setText("");
             ui->pass_inp_auth->setText("");
@@ -750,11 +755,12 @@ void MainWindow::on_BackBtn_clicked()
 
 void MainWindow::on_pushButton_2_clicked()
 {
-//    ui->stackedWidget->setCurrentIndex(10);
-//    ui->comboBox->setCurrentIndex(0);
-//    ui->stackedWidget_2->setCurrentIndex(0);
     QString cat = ui->lineEdit_2->text();
     QString note = ui->lineEdit_4->text();
+    if (cat == "" || note == "") {
+        ui->error1->setText("luh");
+        return;
+    }
     QMessageBox msgBox;
      msgBox.setText("The document has been modified.");
      msgBox.setInformativeText("Do you want to save your changes?");
@@ -764,12 +770,14 @@ void MainWindow::on_pushButton_2_clicked()
      switch (ret) {
        case QMessageBox::Save:
            // Save was clicked
-           qDebug() << cat;
-           qDebug() << note;
            ::addcategory(cat, note);
+           ui->q_no->setText(QString::number(question_no_easy));
+           catt = cat;
            ui->stackedWidget->setCurrentIndex(10);
            ui->comboBox->setCurrentIndex(0);
            ui->stackedWidget_2->setCurrentIndex(0);
+           ui->cat->setText(catt);
+           ui->name_2->setText(namee);
            break;
        case QMessageBox::Discard:
            // Don't Save was clicked
@@ -794,10 +802,11 @@ void MainWindow::on_pushButton_2_clicked()
 //    QMessageBox::information(this,"Confirmation", "Are You Sure?", QMessageBox::Ok, QMessageBox::Cancel);
 }
 
-void MainWindow::on_BackBtn_2_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(9);
-}
+//void MainWindow::on_BackBtn_2_clicked()
+//{
+
+//    ui->stackedWidget->setCurrentIndex(9);
+//}
 
 void MainWindow::on_comboBox_activated(int index)
 {
@@ -841,17 +850,16 @@ void MainWindow::on_Add_clicked()
         qDebug() << ans_e;
         qDebug() << user_id;
         qDebug() << cat_id;
-//        qDebug() << ui->trueBtn->;
-//        if (ui->trueBtn->isChecked()) {
-//            qDebug() << "eurt";
-//        } else if (ui->falseBtn->isChecked()) {
-//            qDebug() << "not eurt";
-//        } else {
-//            qDebug() << "pili ka sis";
-//            return;
-//        }
-//        ui->trueBtn->clicked(false);
 
+
+
+        QString true_btn = ui->trueBtn->styleSheet();
+        QString false_btn = ui->falseBtn->styleSheet();
+
+        if (true_btn == "" && false_btn == "") {
+            ui->error_msg1->setText("Pili ka sis");
+            return;
+        }
 
         QMessageBox msgBox1;
          msgBox1.setText("The document has been modified.");
@@ -862,20 +870,22 @@ void MainWindow::on_Add_clicked()
          switch (ret) {
            case QMessageBox::Save:
                // Save was clicked
+               qDebug() << cat_id;
                ::addQuestionEasy(question, ans_e, user_id, cat_id);
                ui->lineEdit->setText("");
                ui->falseBtn->setStyleSheet("");
                ui->trueBtn->setStyleSheet("");
                qDebug() << ans_e;
-               qDebug() << "asd";
+               qDebug() << "yey!";
+               ::q_num(user_id, cat_id);
+               ui->q_no->setText(QString::number(question_no_easy));
                break;
            case QMessageBox::Discard:
                // Don't Save was clicked
-             qDebug() << "bye";
+               qDebug() << "bye";
                break;
          }
     }
-
 }
 
 void MainWindow::on_trueBtn_clicked()

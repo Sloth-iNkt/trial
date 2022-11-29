@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>9</number>
     </property>
     <widget class="QWidget" name="main_page">
      <widget class="QLabel" name="title">
@@ -1194,26 +1194,26 @@
        </item>
       </layout>
      </widget>
-    </widget>
-    <widget class="QWidget" name="secondform">
-     <widget class="QPushButton" name="BackBtn_2">
+     <widget class="QLabel" name="error1">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>93</width>
-        <height>29</height>
+        <x>80</x>
+        <y>310</y>
+        <width>141</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string>Back</string>
+       <string>TextLabel</string>
       </property>
      </widget>
+    </widget>
+    <widget class="QWidget" name="secondform">
      <widget class="QComboBox" name="comboBox">
       <property name="geometry">
        <rect>
         <x>70</x>
-        <y>50</y>
+        <y>60</y>
         <width>231</width>
         <height>26</height>
        </rect>
@@ -1280,6 +1280,19 @@
         </property>
         <property name="text">
          <string>False</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="error_msg1">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>80</y>
+          <width>191</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </widget>
@@ -1376,7 +1389,7 @@
      <widget class="QPushButton" name="Add">
       <property name="geometry">
        <rect>
-        <x>270</x>
+        <x>20</x>
         <y>310</y>
         <width>93</width>
         <height>29</height>
@@ -1389,8 +1402,8 @@
      <widget class="QPushButton" name="pushButton_9">
       <property name="geometry">
        <rect>
-        <x>250</x>
-        <y>10</y>
+        <x>270</x>
+        <y>310</y>
         <width>93</width>
         <height>29</height>
        </rect>
@@ -1399,17 +1412,43 @@
        <string>Save</string>
       </property>
      </widget>
-     <widget class="QLabel" name="error_msg1">
+     <widget class="QLabel" name="cat">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>310</y>
-        <width>191</width>
+        <x>10</x>
+        <y>10</y>
+        <width>63</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string/>
+       <string>category</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="name_2">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>10</y>
+        <width>63</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>name</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="q_no">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>20</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>question no.</string>
       </property>
      </widget>
     </widget>
