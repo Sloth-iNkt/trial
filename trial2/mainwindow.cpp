@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include<QTime>
+#include <QTime>
 #include <QString>
 #include <QInputDialog>
 #include <QFileDialog>
@@ -20,6 +20,7 @@ QString catt;
 int question_no_easy = 1;
 int cat_id = 0;
 bool ans_e;
+QString optn1, optn2, optn3, optn4, ans_m, ans_h;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -886,6 +887,94 @@ void MainWindow::on_Add_clicked()
                break;
          }
     }
+    else if (index_stacked == 1) {
+//        QString ques, bool ans, int owner_id, int category_id
+        qDebug() << question;
+        qDebug() << ans_m;
+        qDebug() << user_id;
+        qDebug() << cat_id;
+
+
+
+        QString aC_btn = ui->a_btn->styleSheet();
+        QString bC_btn = ui->b_btn->styleSheet();
+        QString cC_btn = ui->c_btn->styleSheet();
+        QString dC_btn = ui->d_btn->styleSheet();
+
+        if (aC_btn == "" && bC_btn == "" && cC_btn == "" && dC_btn == "") {
+            ui->error_msg1->setText("Pili ka sis");
+            return;
+        }
+
+        optn1 = ui -> aLineEdit ->text();
+        optn2 = ui -> bLineEdit ->text();
+        optn3 = ui -> cLineEdit ->text();
+        optn4 = ui -> dLineEdit ->text();
+
+        QMessageBox msgBox1;
+         msgBox1.setText("The document has been modified.");
+         msgBox1.setInformativeText("Add?");
+         msgBox1.setStandardButtons(QMessageBox::Save | QMessageBox::Discard);
+         msgBox1.setDefaultButton(QMessageBox::Save);
+         int ret = msgBox1.exec();
+         switch (ret) {
+           case QMessageBox::Save:
+               // Save was clicked
+               qDebug() << cat_id;
+               ::addQuestionMed(question, optn1, optn2, optn3, optn4, ans_m, user_id, cat_id);
+               ui->lineEdit->setText("");
+               ui->a_btn->setStyleSheet("");
+               ui->b_btn->setStyleSheet("");
+               ui->c_btn->setStyleSheet("");
+               ui->d_btn->setStyleSheet("");
+               qDebug() << ans_m;
+               qDebug() << "yey!";
+               ::q_num(user_id, cat_id);
+               ui->q_no->setText(QString::number(question_no_easy));
+               break;
+           case QMessageBox::Discard:
+               // Don't Save was clicked
+               qDebug() << "bye";
+               break;
+         }
+    }
+    else {
+        qDebug() << question;
+        qDebug() << ans_h;
+        qDebug() << user_id;
+        qDebug() << cat_id;
+
+
+       ans_h = ui->hardlineEdit->text();
+
+        if (ans_h == "") {
+            ui->error_msg1->setText("lagay ka sis");
+            return;
+        }
+
+        QMessageBox msgBox1;
+         msgBox1.setText("The document has been modified.");
+         msgBox1.setInformativeText("Add?");
+         msgBox1.setStandardButtons(QMessageBox::Save | QMessageBox::Discard);
+         msgBox1.setDefaultButton(QMessageBox::Save);
+         int ret = msgBox1.exec();
+         switch (ret) {
+           case QMessageBox::Save:
+               // Save was clicked
+               qDebug() << cat_id;
+               ::addQuestionHard(question, ans_h, user_id, cat_id);
+               ui->lineEdit->setText("");
+               qDebug() << ans_h;
+               qDebug() << "yey!";
+               ::q_num(user_id, cat_id);
+               ui->q_no->setText(QString::number(question_no_easy));
+               break;
+           case QMessageBox::Discard:
+               // Don't Save was clicked
+               qDebug() << "bye";
+               break;
+        }
+    }
 }
 
 void MainWindow::on_trueBtn_clicked()
@@ -907,5 +996,58 @@ void MainWindow::on_falseBtn_clicked()
                                "rgba(0, 255, 0, 255))");
     ui->trueBtn->setStyleSheet("");
     ans_e = false;
+}
+
+
+void MainWindow::on_a_btn_clicked()
+{
+    ui->a_btn->setStyleSheet("background-color: qlineargradient"
+                               "(spread:pad, x1:0, y1:0, x2:1, y2:1, "
+                               "stop:0 rgba(0, 255, 0, 255), stop:1 "
+                               "rgba(0, 255, 0, 255))");
+    ui->b_btn->setStyleSheet("");
+    ui->c_btn->setStyleSheet("");
+    ui->d_btn->setStyleSheet("");
+    ans_m = ui-> aLineEdit -> text();
+}
+
+
+void MainWindow::on_b_btn_clicked()
+{
+    ui->b_btn->setStyleSheet("background-color: qlineargradient"
+                               "(spread:pad, x1:0, y1:0, x2:1, y2:1, "
+                               "stop:0 rgba(0, 255, 0, 255), stop:1 "
+                               "rgba(0, 255, 0, 255))");
+    ui->a_btn->setStyleSheet("");
+    ui->c_btn->setStyleSheet("");
+    ui->d_btn->setStyleSheet("");
+    ans_m = ui-> bLineEdit -> text();
+}
+
+
+
+void MainWindow::on_c_btn_clicked()
+{
+    ui->c_btn->setStyleSheet("background-color: qlineargradient"
+                               "(spread:pad, x1:0, y1:0, x2:1, y2:1, "
+                               "stop:0 rgba(0, 255, 0, 255), stop:1 "
+                               "rgba(0, 255, 0, 255))");
+    ui->a_btn->setStyleSheet("");
+    ui->b_btn->setStyleSheet("");
+    ui->d_btn->setStyleSheet("");
+    ans_m = ui-> cLineEdit -> text();
+}
+
+
+void MainWindow::on_d_btn_clicked()
+{
+    ui->d_btn->setStyleSheet("background-color: qlineargradient"
+                               "(spread:pad, x1:0, y1:0, x2:1, y2:1, "
+                               "stop:0 rgba(0, 255, 0, 255), stop:1 "
+                               "rgba(0, 255, 0, 255))");
+    ui->a_btn->setStyleSheet("");
+    ui->b_btn->setStyleSheet("");
+    ui->c_btn->setStyleSheet("");
+    ans_m = ui-> dLineEdit -> text();
 }
 

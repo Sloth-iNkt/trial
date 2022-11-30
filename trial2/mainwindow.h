@@ -121,6 +121,14 @@ private slots:
 
     void on_falseBtn_clicked();
 
+    void on_a_btn_clicked();
+
+    void on_b_btn_clicked();
+
+    void on_c_btn_clicked();
+
+    void on_d_btn_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;

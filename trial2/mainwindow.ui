@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>9</number>
+     <number>10</number>
     </property>
     <widget class="QWidget" name="main_page">
      <widget class="QLabel" name="title">
@@ -1075,7 +1075,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>category</string>
+       <string>note</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEdit_4">
@@ -1247,7 +1247,7 @@
        <string notr="true">background-color: rgb(170, 170, 255);</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="page">
        <widget class="QPushButton" name="trueBtn">
@@ -1297,61 +1297,101 @@
        </widget>
       </widget>
       <widget class="QWidget" name="page_2">
-       <widget class="QPushButton" name="pushButton_5">
+       <widget class="QPushButton" name="a_btn">
         <property name="geometry">
          <rect>
           <x>20</x>
           <y>10</y>
-          <width>93</width>
+          <width>31</width>
           <height>29</height>
          </rect>
         </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>A</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_6">
+       <widget class="QPushButton" name="b_btn">
         <property name="geometry">
          <rect>
           <x>20</x>
           <y>60</y>
-          <width>93</width>
+          <width>31</width>
           <height>29</height>
          </rect>
         </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>B</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_7">
+       <widget class="QPushButton" name="c_btn">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>170</x>
           <y>10</y>
-          <width>93</width>
+          <width>31</width>
           <height>29</height>
          </rect>
         </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>C</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_8">
+       <widget class="QPushButton" name="d_btn">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>170</x>
           <y>60</y>
-          <width>93</width>
+          <width>31</width>
           <height>29</height>
          </rect>
         </property>
         <property name="text">
-         <string>PushButton</string>
+         <string>D</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="aLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>10</y>
+          <width>71</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="bLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>60</y>
+          <width>71</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="cLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>10</y>
+          <width>71</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="dLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>60</y>
+          <width>71</width>
+          <height>31</height>
+         </rect>
         </property>
        </widget>
       </widget>
       <widget class="QWidget" name="page_3">
-       <widget class="QLineEdit" name="lineEdit_5">
+       <widget class="QLineEdit" name="hardlineEdit">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -1368,7 +1408,7 @@
        <rect>
         <x>30</x>
         <y>90</y>
-        <width>321</width>
+        <width>311</width>
         <height>111</height>
        </rect>
       </property>
