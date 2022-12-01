@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>10</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="main_page">
      <widget class="QLabel" name="title">
@@ -1247,7 +1247,7 @@
        <string notr="true">background-color: rgb(170, 170, 255);</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <widget class="QPushButton" name="trueBtn">
@@ -1280,19 +1280,6 @@
         </property>
         <property name="text">
          <string>False</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="error_msg1">
-        <property name="geometry">
-         <rect>
-          <x>60</x>
-          <y>80</y>
-          <width>191</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
         </property>
        </widget>
       </widget>
@@ -1489,6 +1476,19 @@
       </property>
       <property name="text">
        <string>question no.</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="error_msg1">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>310</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>

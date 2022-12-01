@@ -18,9 +18,11 @@ int user_id = 0;
 QString namee;
 QString catt;
 int question_no_easy = 1;
+int question_no_med = 1;
+int question_no_hard = 1;
 int cat_id = 0;
 bool ans_e;
-QString optn1, optn2, optn3, optn4, ans_m, ans_h;
+QString optn1, optn2, optn3, optn4, ans_m, ans_h, diff_;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -233,20 +235,45 @@ void Reviewer (QString fileN, QByteArray file) {
     }
 }
 
-void q_num (int owner_id, int cat_id) {
+void q_num (QString q_diff, int owner_id, int cat_id) {
     QSqlQuery qry;
-    qry.prepare("SELECT owner_id, category_id FROM questionsEasy "
-                "WHERE owner_id = ? AND category_id = ?");
-    qry.bindValue( 0, owner_id );
+    qry.prepare("SELECT owner_id, category_id FROM \'" + q_diff + "\' WHERE owner_id = ? AND category_id = ?");
+    qry.bindValue(0, owner_id);
     qry.bindValue(1, cat_id);
+    qDebug() << q_diff;
     qDebug() << owner_id;
     qDebug() << cat_id;
 
     if (qry.exec()) {
         qDebug() << "di na error";
         if (qry.next()) {
-            qDebug() << "1";
-            question_no_easy += 1;
+            if (q_diff == "questionsEasy") {
+                question_no_easy += 1;
+                qDebug() << question_no_easy;
+            } else if (q_diff == "questionMedium") {
+                question_no_med += 1;
+                qDebug() << question_no_med;
+            } else {
+                question_no_hard += 1;
+                qDebug() << question_no_hard;
+            }
+        }
+    }
+}
+
+void ShowQE(int owner_id, int cat_id) {
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM questionsEasy WHERE owner_id = ? AND category_id = ?");
+    qry.bindValue(0, owner_id);
+    qry.bindValue(1, cat_id);
+
+    if (qry.exec()) {
+        if(qry.next()) {
+            int id_ = qry.value(0).toInt();
+            QString q = qry.value(1).toString();
+            bool ans = qry.value(2).toBool();
+            int o_id = qry.value(3).toInt();
+            int c_id = qry.value(4).toInt();
         }
     }
 }
@@ -443,7 +470,7 @@ void MainWindow::on_mediumBtn_clicked()
 
 void MainWindow::on_difficultBtn_clicked()
 {
-    difficulty_ = "hard";
+            difficulty_ = "hard";
     ui->stackedWidget->setCurrentIndex(4);
     ui->instruction->setText("instruction sa hard");
     if (topic_ == "geo" ){
@@ -516,6 +543,7 @@ void MainWindow::on_resumeBtn_clicked()
 void MainWindow::on_okaybtn_clicked()
 {
     ui->stackedWidget->setCurrentIndex(5);
+//    ui->label_2->setText();
     ui->diff_label->setText(difficulty_);
     if (difficulty_ == "easy") {
         ui->quizBox->setCurrentIndex(0);
@@ -525,6 +553,7 @@ void MainWindow::on_okaybtn_clicked()
         ui->quizBox->setCurrentIndex(2);
     }
     timer_();
+    ui->scoreLbl->setText(QString::number(score_));
 }
 
 void MainWindow::on_menuBtnP_clicked()
@@ -788,18 +817,26 @@ void MainWindow::on_pushButton_2_clicked()
 
      QSqlQuery qry;
 
-     if (qry.exec("SELECT ID, category, note FROM category "
-                  "WHERE category=\'" + cat + "\' AND note=\'" + note + "\'")) {
-        if (qry.next()) {
-            int id_ = qry.value(0).toInt();
-            QString category = qry.value(1).toString();
-            QString note = qry.value(2).toString();
-            qDebug() << category;
-            qDebug() << note;
-            qDebug() << id_;
-            cat_id = id_;
-        }
+     if (qry.exec("SELECT ID FROM category WHERE ID = (SELECT MAX(ID) FROM category);")) {
+         if (qry.next()) {
+             cat_id = qry.value(0).toInt();
+         }
      }
+
+//     QSqlQuery qry;
+
+//     if (qry.exec("SELECT ID, category, note FROM category "
+//                  "WHERE category=\'" + cat + "\' AND note=\'" + note + "\'")) {
+//        if (qry.next()) {
+//            int id_ = qry.value(0).toInt();
+//            QString category = qry.value(1).toString();
+//            QString note = qry.value(2).toString();
+//            qDebug() << category;
+//            qDebug() << note;
+//            qDebug() << id_;
+//            cat_id = id_;
+//        }
+//     }
 //    QMessageBox::information(this,"Confirmation", "Are You Sure?", QMessageBox::Ok, QMessageBox::Cancel);
 }
 
@@ -814,10 +851,13 @@ void MainWindow::on_comboBox_activated(int index)
     qDebug() << index;
     if (index == 0) {
         ui->stackedWidget_2->setCurrentIndex(index);
+        ui->q_no->setText(QString::number(question_no_easy));
     } else if (index == 1) {
         ui->stackedWidget_2->setCurrentIndex(index);
+        ui->q_no->setText(QString::number(question_no_med));
     } else {
         ui->stackedWidget_2->setCurrentIndex(index);
+        ui->q_no->setText(QString::number(question_no_hard));
     }
     ui->trueBtn->setStyleSheet("");
     ui->falseBtn->setStyleSheet("");
@@ -852,8 +892,6 @@ void MainWindow::on_Add_clicked()
         qDebug() << user_id;
         qDebug() << cat_id;
 
-
-
         QString true_btn = ui->trueBtn->styleSheet();
         QString false_btn = ui->falseBtn->styleSheet();
 
@@ -871,14 +909,15 @@ void MainWindow::on_Add_clicked()
          switch (ret) {
            case QMessageBox::Save:
                // Save was clicked
-               qDebug() << cat_id;
+               qDebug() << cat_id << "lololol";
+               diff_ = "questionsEasy";
                ::addQuestionEasy(question, ans_e, user_id, cat_id);
                ui->lineEdit->setText("");
                ui->falseBtn->setStyleSheet("");
                ui->trueBtn->setStyleSheet("");
                qDebug() << ans_e;
                qDebug() << "yey!";
-               ::q_num(user_id, cat_id);
+               ::q_num(diff_, user_id, cat_id);
                ui->q_no->setText(QString::number(question_no_easy));
                break;
            case QMessageBox::Discard:
@@ -892,9 +931,8 @@ void MainWindow::on_Add_clicked()
         qDebug() << question;
         qDebug() << ans_m;
         qDebug() << user_id;
-        qDebug() << cat_id;
-
-
+        qDebug() << cat_id << "lololol1";
+        diff_ = "questionMedium";
 
         QString aC_btn = ui->a_btn->styleSheet();
         QString bC_btn = ui->b_btn->styleSheet();
@@ -929,8 +967,8 @@ void MainWindow::on_Add_clicked()
                ui->d_btn->setStyleSheet("");
                qDebug() << ans_m;
                qDebug() << "yey!";
-               ::q_num(user_id, cat_id);
-               ui->q_no->setText(QString::number(question_no_easy));
+               ::q_num(diff_, user_id, cat_id);
+               ui->q_no->setText(QString::number(question_no_med));
                break;
            case QMessageBox::Discard:
                // Don't Save was clicked
@@ -942,7 +980,8 @@ void MainWindow::on_Add_clicked()
         qDebug() << question;
         qDebug() << ans_h;
         qDebug() << user_id;
-        qDebug() << cat_id;
+        qDebug() << cat_id << "lololol2";
+        diff_ = "questionHard";
 
 
        ans_h = ui->hardlineEdit->text();
@@ -966,8 +1005,8 @@ void MainWindow::on_Add_clicked()
                ui->lineEdit->setText("");
                qDebug() << ans_h;
                qDebug() << "yey!";
-               ::q_num(user_id, cat_id);
-               ui->q_no->setText(QString::number(question_no_easy));
+               ::q_num(diff_, user_id, cat_id);
+               ui->q_no->setText(QString::number(question_no_hard));
                break;
            case QMessageBox::Discard:
                // Don't Save was clicked
