@@ -129,6 +129,24 @@ private slots:
 
     void on_d_btn_clicked();
 
+    void on_revBtn_clicked();
+
+    void ShowCat();
+
+    void on_comboBox_3_activated(int index);
+
+    void on_comboBox_2_activated(int index);
+
+    void on_pushButton_3_clicked();
+
+    void on_okaybtn_2_clicked();
+
+    void ShowQE(int cat_id);
+
+    void on_t_2_clicked();
+
+    void on_f_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
