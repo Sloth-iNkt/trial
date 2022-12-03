@@ -147,6 +147,13 @@ private slots:
 
     void on_f_2_clicked();
 
+    void maxnum(QString diff_, int cat_id);
+
+    void Showdiff(int cat_id);
+
+
+    void on_comboBox_4_activated(int index);
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;

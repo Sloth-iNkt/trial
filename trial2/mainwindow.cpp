@@ -24,12 +24,12 @@ QString catt;
 int question_no_easy = 1;
 int question_no_med = 1;
 int question_no_hard = 1;
-int cat_id = 0;
+int cat_id = 1;
 int db_cat_id;
 QString db_cat, db_note, q_diff, note, category_;
 bool ans_e, ans_e_2;
 QString optn1, optn2, optn3, optn4, ans_m, ans_h, diff_, db_name;
-int q_cat;
+int q_cat = 1, q_item;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -294,12 +294,23 @@ void MainWindow::ShowQE(int cat_id) {
 }
 
 
-void lol(int range_, int num) {
-    std::uniform_int_distribution<int> dis(1, range_);
-    for (int i = 0; i < num; i++) {
-        int value = dis(*QRandomGenerator::global());
-        qDebug() << value;
+void item_num(int range_, int num) { // random number para sa random questions din
+    int randArr[range_];
+    int k = 1;
+    for (int j = 0; j < range_; j++) {
+        randArr[j] = k;
+        k++;
     }
+    int array[num];
+    for (int i = 0; i < num; i++) {
+            int r = i + rand() % (range_ - i);
+            array[i] = randArr[r];
+            randArr[r] = randArr[i];
+    }
+
+//    for (int g=0; g<num; g++) {
+//        qDebug() << array[g];
+//    }
 }
 
 
@@ -328,6 +339,48 @@ void MainWindow::ShowCat() {
     }
 }
 
+
+void MainWindow::Showdiff (int cat_id) {
+    QSqlQuery qry;
+    ui->comboBox_3->clear();
+    qry.prepare("SELECT ID FROM questionsEasy WHERE category_id = ?");
+    qry.bindValue(0, cat_id);
+    if (qry.exec()) {
+        if (qry.next()) {
+            int num_e = qry.value(0).toInt();
+            qDebug() << num_e;
+            qDebug() << cat_id << "thethers";
+            ui->comboBox_3->addItem("True or False");
+        }
+    }
+
+    qry.prepare("SELECT ID FROM questionMedium WHERE category_id = ?");
+    qry.bindValue(0, cat_id);
+    if (qry.exec()) {
+        if (qry.next()) {
+            int num_e = qry.value(0).toInt();
+            qDebug() << num_e;
+            qDebug() << cat_id << "thex";
+            ui->comboBox_3->addItem("Multiple Choices");
+        }
+    }
+
+    qry.prepare("SELECT ID FROM questionHard WHERE category_id = ?");
+    qry.bindValue(0, cat_id);
+    if (qry.exec()) {
+        if (qry.next()) {
+            int num_e = qry.value(0).toInt();
+            qDebug() << num_e;
+            qDebug() << cat_id << "thester";
+            ui->comboBox_3->addItem("Identificaction");
+        }
+    }
+
+//    ui->comboBox_3->addItem("True or False");
+//    ui->comboBox_3->addItem("Multiple Choices");
+//    ui->comboBox_3->addItem("Identification");
+}
+
 void Show_note (int cat_id) {
     QSqlQuery qry;
     qry.prepare("SELECT category, note, owner_id FROM category WHERE ID = ?");
@@ -351,6 +404,24 @@ void Show_note (int cat_id) {
         if (qry1.next()) {
             qDebug() << "piknik";
             db_name = qry1.value(0).toString();
+        }
+    }
+}
+
+void MainWindow::maxnum(QString diff_, int cat_id) {
+    QSqlQuery qry;
+    q_item = 1;
+    ui->comboBox_4->clear();
+    qry.prepare("SELECT ID FROM \'" + diff_ + "\' WHERE category_id = ?");
+    qDebug() << diff_ << cat_id;
+    qry.bindValue(0, cat_id);
+    if (qry.exec()) {
+        qDebug() << "error not";
+        while (qry.next()) {
+            int q_id = qry.value(0).toInt();
+//            qDebug() << q_item;
+            ui->comboBox_4->addItem(QString::number(q_item));
+            q_item += 1;
         }
     }
 }
@@ -462,7 +533,6 @@ void MainWindow::asktrigoHQues(){
 void MainWindow::on_pushButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
-    ::lol(50, 10);
 //    ui->scoreLbl->setText(QString::number(score_)); !!!!!!!!!!!!!!!!!! para san to????? ang aga naman ng sa score HAHA
 }
 
@@ -1173,17 +1243,15 @@ void MainWindow::on_d_btn_clicked()
 void MainWindow::on_revBtn_clicked()
 {
     ui->stackedWidget->setCurrentIndex(11);
-    ui->comboBox_3->addItem("True or False");
-    ui->comboBox_3->addItem("Multiple Choices");
-    ui->comboBox_3->addItem("Identification");
     ShowCat();
+    Showdiff(cat_id);
     q_diff = "questionsEasy";
-
+    maxnum(q_diff, q_cat);
 }
-
 
 void MainWindow::on_comboBox_3_activated(int index)
 {
+
     if (index == 0) {
         q_diff = "questionsEasy";
     } else if (index == 1) {
@@ -1192,20 +1260,31 @@ void MainWindow::on_comboBox_3_activated(int index)
         q_diff = "questionHard";
     }
     qDebug() << q_diff;
+    maxnum(q_diff, q_cat);
+    ui->comboBox_2->setCurrentIndex(0);
+    ui->comboBox_4->setCurrentIndex(0);
 }
 
 
 void MainWindow::on_comboBox_2_activated(int index)
 {
-    qDebug() << index;
+    qDebug() << index + 1;
+    q_cat = index + 1;
+    maxnum(q_diff, q_cat);
+    Showdiff(q_cat);
+    ui->comboBox_3->setCurrentIndex(0);
+    ui->comboBox_4->setCurrentIndex(0);
+}
+
+void MainWindow::on_comboBox_4_activated(int index)
+{
 
 }
 
-
 void MainWindow::on_pushButton_3_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(12);
-    ui->quizBox_2->setCurrentIndex(0);
+//    ui->stackedWidget->setCurrentIndex(12);
+//    ui->quizBox_2->setCurrentIndex(0);
     q_cat = ui->comboBox_2->currentIndex() + 1;
     Show_note(q_cat);
     qDebug() << db_cat;
@@ -1226,6 +1305,9 @@ void MainWindow::on_pushButton_3_clicked()
     qDebug() << note;
     qDebug() << q_cat;
     qDebug() << q_diff;
+    int inp_q_num = ui->comboBox_4->currentIndex() + 1;
+    qDebug() << inp_q_num << "new";
+    ::item_num(q_item - 1, inp_q_num);
 }
 
 
@@ -1248,4 +1330,8 @@ void MainWindow::on_f_2_clicked()
 {
     ans_e_2 = false;
 }
+
+
+
+
 
